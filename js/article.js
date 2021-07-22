@@ -3,6 +3,7 @@
 const section = document.querySelector('.section'); 
 const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
 const id = params.get('id'); //Obtiens l'id du produit 
+const btn = document.querySelector('.btn')
 
 //***** Appel API *****//
 
@@ -59,3 +60,37 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 		section.appendChild(article);
    
   }
+
+  //***** Fonction : btn ecoute *****//
+
+btn.addEventListener('click', () => {
+  console.log('cliked');
+})
+
+//**Fonction ajouter au panier */
+
+function remplissageStockage() {
+  localStorage.setItem('article', 'id');
+}
+
+// Function ajouterPanier() {
+
+//   let contenuPanier = JSON.parse(localStorage.getItem('ajouterPanier'));
+//   if (ajouterPanier === null) {
+//     contenuPanier = [];
+//   }
+
+//   //*** Produit ajouter local storage
+// let product = new product(id);
+
+// contenuPanier.push(product);
+// localStorage.setItem("contenuPanier", JSON.stringify(contenuPanier));
+
+// }
+
+// Function ajouterPanier() {
+//   let contenuPanier = JSON.parse(localStorage.getItem('ajouterPanier'));
+//   localStorage.setItem(id, contenuPanier)
+// }
+
+// console.log(ajouterPanier);  
