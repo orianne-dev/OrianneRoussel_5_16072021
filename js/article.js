@@ -16,7 +16,7 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
   .then(function(element) {   
 
 	createProduct(element);
-	
+
   })
   .catch(function(err) {
 	alert('Une erreur est survenue lors du chargement de la fiche produit');
@@ -61,26 +61,26 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
    
   }
 
+  
+
+  
   //***** Fonction : btn ecoute *****//
 
 btn.addEventListener('click', () => {
   console.log('cliked');
-})
+  ajouterPanier();
+ })
 
 //**Fonction ajouter au panier */
 
-function remplissageStockage() {
+function ajouterPanier() {
   localStorage.setItem('article', 'id');
+  let contenuPanier = JSON.parse(localStorage.getItem('ajouterPanier'));
+  
 }
 
-// Function ajouterPanier() {
 
-//   let contenuPanier = JSON.parse(localStorage.getItem('ajouterPanier'));
-//   if (ajouterPanier === null) {
-//     contenuPanier = [];
-//   }
-
-//   //*** Produit ajouter local storage
+  //*** Produit ajouter local storage
 // let product = new product(id);
 
 // contenuPanier.push(product);
@@ -92,5 +92,4 @@ function remplissageStockage() {
 //   let contenuPanier = JSON.parse(localStorage.getItem('ajouterPanier'));
 //   localStorage.setItem(id, contenuPanier)
 // }
-
-// console.log(ajouterPanier);  
+ 
