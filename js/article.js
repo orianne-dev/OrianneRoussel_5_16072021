@@ -49,7 +49,7 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
     
         name.innerText = element.name;
         description.innerText = element.description;
-        prix.innerText = element.price;
+        prix.innerText = element.price / 100;
         lien.innerText = element._id; 
     
         article.appendChild(name);
@@ -61,35 +61,58 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
    
   }
 
-  
+//***************gestion du panier ****************/
 
-  
-  //***** Fonction : btn ecoute *****//
+//addEventListener  -  Ecouter le bouton et envoyer au panier
+  btn.addEventListener("click",(event) => {
+//event.preventDefaut();
 
-btn.addEventListener('click', () => {
-  console.log('cliked');
-  ajouterPanier();
- })
+//recuperation des valeurs choisi ---> Je n'ai pas réussi à recuperer les element depuis l'API
+let pdtSelec = {
+  nomPdt: 'element.name',
+  idPdt: 'element._id',
+  prix: 'element.prix / 100'
+};
 
-//**Fonction ajouter au panier */
+//*************stocker la recuperation des valeurs dans le LS **********************//
 
-function ajouterPanier() {
-  localStorage.setItem('article', 'id');
-  let contenuPanier = JSON.parse(localStorage.getItem('ajouterPanier'));
-  
+// VARIABLE pdtInLocalStorage dans laquelle on met les clé et valeur qui iront dans le LS
+let pdtInLocalStorage = JSON.parse(localStorage.getItem("produit")); //localStorage.getItem(produit , objet [id, nom , prix])
+//JSON.parse convertis le JSON en objet JS
+console.log(pdtInLocalStorage);
+
+//FONCTION fenetre pop up 
+const popupConfirf =  () =>{
+  if(window.confirm( `${element.name} a bien été ajouté au panier
+  Consultez le panier OK ou revenir à l'acceuil ANNULER`)){ 
+  window.location.href = "panier.html";
+}else{
+  window.location.href = "panier.html";
+} 
 }
 
+//si il y a deja des pdt dans le LS
+if(pdtInLocalStorage){
+  pdtInLocalStorage.push(pdtSelec); //cree une variable qui contien l'id le nom et le prix
+  localStorage.setItem("article",JSON.stringify(pdtInLocalStorage));
 
-  //*** Produit ajouter local storage
-// let product = new product(id);
 
-// contenuPanier.push(product);
-// localStorage.setItem("contenuPanier", JSON.stringify(contenuPanier));
+//appel fonction popup confirmation user 
+  popupConfirf(); 
+}
+//si il n'y a pas de pdt d'enregistré dans le local storage
+else{
+  pdtInLocalStorage = [];
+  pdtInLocalStorage.push(pdtSelec); 
+  localStorage.setItem("article",JSON.stringify(pdtInLocalStorage));
 
-// }
+  console.log(pdtInLocalStorage);
+  }
+})
 
-// Function ajouterPanier() {
-//   let contenuPanier = JSON.parse(localStorage.getItem('ajouterPanier'));
-//   localStorage.setItem(id, contenuPanier)
-// }
+
+  
+
+  
+ 
  
