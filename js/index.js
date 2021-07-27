@@ -10,12 +10,15 @@ fetch('http://localhost:3000/api/cameras')     //fetch appel le serveur
     for(i = 0; i < cameras.length; i++) {      // Boucle for qui permet Permet de créer les <article> avec la const section
 
         let article = document.createElement('article');
-        article.className = 'article card mb-4 shadow-sm';
+        article.className = 'article col-md-4 col-sm-6';
+
+        let card = document.createElement('div');
+        card.className = 'card mb-4 shadow-sm';
 
         let img = document.createElement('img');
-        img.className = 'article__image w-100';
+        img.className = 'article__image img-fluid';
         img.setAttribute('src', cameras[i].imageUrl);
-        img.setAttribute('width', '300');
+        // img.setAttribute('width', '300');
 
         let name = document.createElement('h2');
         name.className = 'article__nom text-center';
@@ -34,12 +37,13 @@ fetch('http://localhost:3000/api/cameras')     //fetch appel le serveur
         description.innerText = cameras[i].description;
         prix.innerText = cameras[i].price / 100;
         lien.innerText = cameras[i]._id;
-    
-        article.appendChild(img);
-        article.appendChild(name);
-        article.appendChild(description);
-        article.appendChild(prix);
-        article.appendChild(lien);
+
+        article.appendChild(card);
+        card.appendChild(img);
+        card.appendChild(name);
+        card.appendChild(description);
+        card.appendChild(prix);
+        card.appendChild(lien);
         section.appendChild(article);
     }
 

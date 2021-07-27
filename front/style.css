@@ -10,6 +10,10 @@ body {
     height: 100vh;
 }
 
+.text-dark {
+    font-size: 1.8rem;
+}
+
 .acceuil {
     background-image: url(/back/images/vcam_2.jpg);
     background-repeat: no-repeat;
@@ -20,4 +24,9 @@ body {
 .acceuil__titre, .acceuil__p {
     background: linear-gradient(90deg, rgb(0 0 0 / 73%) 100%, rgba(0,0,0,0.38337182448036955) 100%, rgb(0 0 0) 100%);
     border-radius: 12px;
+}
+
+.img {
+    max-width: 100%;
+    height: auto;
 }
