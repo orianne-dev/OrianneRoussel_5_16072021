@@ -5,12 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>ORINOCO</title>
 </head>
 <body>
 
-    <section class="section">
-    </section>
+    <!-- Navbar -->
+
+    <nav class="nav bg-light justify-content-center">
+            <a href="#" class="nav-link text-dark">Acceuil</a>
+            <a href="#" class="nav-link text-dark">panier</a>
+    </nav>
+
+    <!-- nav : applique diplay flex ; bg-light: background claire; justify-content-center:centrer les elements a l'interieur 
+         nav-link: styliser les liens; texte-da: txt dark; -->
+
+         <!-- Home -->
+
+         <section class="acceuil bg-dark d-flex w-100 h-100 flex-column justify-content-center align-items-center">
+
+            <h1 class="acceuil__titre display-1 text-white text-center">
+                ORINOCO
+            </h1>
+            <p class="acceuil__p lead text-center text-white">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. In enim itaque praesentium eos illum laboriosam libero quas recusandae, aliquid animi!
+            </p>
+            <p class="lead mb-5">
+                <a href="#" class="btn btn-lg btn-secondary">
+                    En savoir plus
+                </a>
+            </p>
+         </section>
+
+         <!-- Grille Responsive -->
+
+         <div class="container py-5 bg-light">
+
+            <h2 class="display-4 text-center mb-5">Lorem ipsum dolor sit amet.</h2>
+
+<!--  576px XS > 576px S > 768px M > 992px L > 1200px XL -->
+
+            <div class="row">
+
+                <div class="col-md-4 col-sm-6">
+                    <!-- <div class="card mb-4 shadow-sm"> -->
+                        <section class="section Card mb-4 shadow-sm">
+                        </section>
+                    <!-- </div> -->
+                </div>
+
+            </div>
+
+         </div>
+    <!-- <section class="section">
+    </section> -->
 
     <script src="/js/index.js"></script>
 </body>

@@ -51,12 +51,20 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
         description.innerText = element.description;
         prix.innerText = element.price / 100;
         lien.innerText = element._id; 
+
+        let button = document.createElement("button");	
+		button.setAttribute('class','product-link btn btn-dark'); 
+		button.setAttribute('data-id_product', element._id); 
+		button.setAttribute('data-name_product', element.name);
+		button.setAttribute('data-price_product', element.price); 
+		button.innerHTML = 'Ajouter au panier';
     
         article.appendChild(name);
         article.appendChild(description);
         article.appendChild(prix);
         article.appendChild(lien);
         article.appendChild(img);
+        article.append(button);
 		section.appendChild(article);
    
   }
@@ -69,9 +77,9 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 
 //recuperation des valeurs choisi ---> Je n'ai pas réussi à recuperer les element depuis l'API
 let pdtSelec = {
-  nomPdt: 'element.name',
-  idPdt: 'element._id',
-  prix: 'element.prix / 100'
+  nomPdt: button.getAttribute('data-name_product'),
+  idPdt: button.getAttribute('data-id_product'),
+  prix: button.getAttribute('data-price_product') / 100
 };
 
 //*************stocker la recuperation des valeurs dans le LS **********************//
