@@ -2,6 +2,9 @@
 const section = document.querySelector('.section'); 
 const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
 const id = params.get('id'); //Obtiens l'id du produit 
+let panierList = [];
+localStorage.setItem('panier',JSON.stringify(panierList));
+
 
 //***** Appel API *****//
 
@@ -53,8 +56,8 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
     
         name.innerText = element.name;
         description.innerText = element.description;
-        prix.innerText = element.price / 100;
-        lien.innerText = element._id; 
+        prix.innerText = element.price / 100 + "€";
+        // lien.innerText = element._id; 
 	 
         article.appendChild(name);
         article.appendChild(description);
@@ -73,6 +76,11 @@ let pdtSelec = {
   idPdt: button.getAttribute('data-id_product'),
   prix: button.getAttribute('data-price_product') / 100
 };
+panierList = JSON.parse(localStorage.getItem('panier'));
+panierList.push(pdtSelec);
+localStorage.setItem('panier',JSON.stringify(panierList));
+console.log('objet cliquer *******************************************************************', localStorage.getItem('panier'));
+window.location.href='panier.html';
 //*************stocker la recuperation des valeurs dans le LS **********************//
 // VARIABLE pdtInLocalStorage dans laquelle on met les clé et valeur qui iront dans le LS
 let pdtInLocalStorage = JSON.parse(localStorage.getItem("produit"));
@@ -108,6 +116,8 @@ else{
 
   
   }
+
+
 
 
   

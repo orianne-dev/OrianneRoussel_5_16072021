@@ -35,7 +35,7 @@ fetch('http://localhost:3000/api/cameras')     //fetch appel le serveur
     
         name.innerText = cameras[i].name;
         description.innerText = cameras[i].description;
-        prix.innerText = cameras[i].price / 100;
+        prix.innerText = cameras[i].price / 100 + "€";
         lien.innerText = cameras[i]._id;
 
         article.appendChild(card);
