@@ -2,9 +2,11 @@
 const section = document.querySelector('.section'); 
 const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
 const id = params.get('id'); //Obtiens l'id du produit 
-let panierList = [];
-localStorage.setItem('panier',JSON.stringify(panierList));
+///let panierList = []; //création du tableau ou seront stocké les articles 
+///localStorage.setItem('panier',JSON.stringify(panierList)); // envoi dans le ls panierList strignify et a comme key 'panier'
 
+let pdtInLocalStorage =[];
+localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
 
 //***** Appel API *****//
 
@@ -23,7 +25,7 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 	alert('Une erreur est survenue lors du chargement de la fiche produit');
   });
 
-  //***** Fonction createProduct: création des different element de la section article *****//
+//==================Fonction createProduct: création des different element de la section article==============//
   function createProduct(element){
 
         let article = document.createElement('article');
@@ -68,24 +70,36 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 		    section.appendChild(article);
    
 //***************gestion du panier ****************/
+
 //addEventListener  -  Ecouter le bouton et envoyer au panier
   button.addEventListener("click",(event) => {
-//recuperation des valeurs choisi
-let pdtSelec = {
+
+// produitSelection --> recuperation des valeurs choisi
+let produitSelection = {                               
   nomPdt: button.getAttribute('data-name_product'),
   idPdt: button.getAttribute('data-id_product'),
   prix: button.getAttribute('data-price_product') / 100
 };
-panierList = JSON.parse(localStorage.getItem('panier'));
-panierList.push(pdtSelec);
-localStorage.setItem('panier',JSON.stringify(panierList));
-console.log('objet cliquer *******************************************************************', localStorage.getItem('panier'));
-window.location.href='panier.html';
-//*************stocker la recuperation des valeurs dans le LS **********************//
-// VARIABLE pdtInLocalStorage dans laquelle on met les clé et valeur qui iront dans le LS
-let pdtInLocalStorage = JSON.parse(localStorage.getItem("produit"));
 
-//FONCTION fenetre pop up 
+//réafecter fonction  panierList --> recuperer dans le ls 'panier' et le parser
+///panierList = JSON.parse(localStorage.getItem('panier')); 
+
+//Ajoute produitSelection à la fin du tableau panierList
+///panierList.push(produitSelection);
+
+//envoi du LS panier en strignifiant panierList
+///localStorage.setItem('panier',JSON.stringify(panierList));
+///console.log('objet cliquer *************', localStorage.getItem('panier'));
+
+//Envoi du panier vers panier.html
+///window.location.href='panier.html';
+
+
+//*************stocker la recuperation des valeurs dans le LS **********************//
+  // VARIABLE pdtInLocalStorage dans laquelle on met les clé et valeur qui iront dans le LS
+pdtInLocalStorage = JSON.parse(localStorage.getItem("produit"));
+
+  //FONCTION fenetre pop up 
 const popupConfirm = () =>{
   if(window.confirm( `${element.name} a bien été ajouté au panier
   Consultez le panier OK ou revenir à l'acceuil ANNULER`)){ 
@@ -94,30 +108,29 @@ const popupConfirm = () =>{
   window.location.href = "panier.html";
 } 
 }
-//si il y a deja des pdt dans le LS
+  //si il y a deja des pdt dans le LS
 if(pdtInLocalStorage){
-  pdtInLocalStorage.push(pdtSelec); //cree une variable qui contien l'id le nom et le prix
-  localStorage.setItem("article",JSON.stringify(pdtInLocalStorage));
+  pdtInLocalStorage.push(produitSelection); //cree une variable qui contien l'id le nom et le prix
+  localStorage.setItem("produit",JSON.stringify(pdtInLocalStorage));
 
 
-//appel fonction popup confirmation user 
+  //appel fonction popup confirmation user 
   popupConfirm(); 
 }
-//si il n'y a pas de pdt d'enregistré dans le local storage
+  //si il n'y a pas de pdt d'enregistré dans le local storage
 else{
   pdtInLocalStorage = [];
-  pdtInLocalStorage.push(pdtSelec); 
-  localStorage.setItem("article",JSON.stringify(pdtInLocalStorage));
+  pdtInLocalStorage.push(produitSelection); 
+  localStorage.setItem("produit",JSON.stringify(pdtInLocalStorage));
 
   console.log(pdtInLocalStorage);
   }
 })
 
-
+//***************FIN gestion du panier ****************/
   
   }
-
-
+//==============================FIN Fonction createProduct===============================//
 
 
   
