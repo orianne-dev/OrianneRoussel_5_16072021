@@ -31,3 +31,15 @@ body {
     height: auto;
 }
 
+.article-articlePage {
+    width: 18rem;
+}
+
+
+.footer-article-panier {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding-top: 50px;
+}
+

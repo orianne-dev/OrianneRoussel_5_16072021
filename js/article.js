@@ -30,25 +30,39 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
   function createProduct(element){
 
         let article = document.createElement('article');
-        article.className = 'article';
+        article.className = 'article card article-articlePage mx-auto border-dark';
+
+        let img = document.createElement('img');
+        img.className = 'article__image card-img-top';
+        img.setAttribute('src', element.imageUrl);
+        img.setAttribute('width', '300');
 
         let name = document.createElement('h2');
-        name.className = 'article__nom';
+        name.className = 'article__nom card-title text-center';
 
         let description = document.createElement('p');
-        description.className = 'article__description';
+        description.className = 'article__description card-text text-center';
+
+        let buttonLenses = document.createElement('button');
+        buttonLenses.className = 'btn buttonLenses btn-secondary btn-sm dropdown-toggle'
+        buttonLenses.type = 'button';
+        buttonLenses.toggleAttribute = "dropdown";
+        buttonLenses.ariaExpanded = 'false';
+        //Probleme pour afficher la liste des lentilles
+        //S'affiche dans le DOM mais pas sur le navigateur
+
+        let listLenses = document.createElement('ul');
+        listLenses.className = 'dropdown-menu';
+
+        let choixLenses = document.createElement('li');
+
 
         let prix = document.createElement('p');
-        prix.className = 'article__prix';
+        prix.className = 'article__prix text-center';
 
         let lien = document.createElement('a');
         lien.setAttribute('href', 'article.html?id=' + element._id);
         lien.className = 'article__lien';
- 
-        let img = document.createElement('img');
-        img.className = 'article__image';
-        img.setAttribute('src', element.imageUrl);
-        img.setAttribute('width', '300');
 
         let button = document.createElement("button");	
 		    button.setAttribute('class','product-link btn btn-dark'); 
@@ -60,13 +74,17 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
         name.innerText = element.name;
         description.innerText = element.description;
         prix.innerText = element.price / 100 + "€";
-        // lien.innerText = element._id; 
+        buttonLenses.innerText = 'Choix des lentilles'; 
+        choixLenses.innerText = element.lenses;
 	 
+        article.appendChild(img);
         article.appendChild(name);
         article.appendChild(description);
+        article.appendChild(buttonLenses);
+        buttonLenses.appendChild(listLenses);
+        listLenses.appendChild(choixLenses);
         article.appendChild(prix);
         article.appendChild(lien);
-        article.appendChild(img);
 		    article.append(button);
 		    section.appendChild(article);
    
