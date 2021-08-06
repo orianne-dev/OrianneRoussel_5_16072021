@@ -8,6 +8,7 @@ const id = params.get('id'); //Obtiens l'id du produit
 let pdtInLocalStorage =[];
 localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
 
+
 //***** Appel API *****//
 
 fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le const id
