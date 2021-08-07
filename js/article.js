@@ -1,15 +1,13 @@
-//***** Declaraton des variables *****//
+//******************** Déclaraton des variables *****************************//
+
 const section = document.querySelector('.section'); 
 const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
 const id = params.get('id'); //Obtiens l'id du produit 
-///let panierList = []; //création du tableau ou seront stocké les articles 
-///localStorage.setItem('panier',JSON.stringify(panierList)); // envoi dans le ls panierList strignify et a comme key 'panier'
-
-let pdtInLocalStorage =[];
-localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
+let pdtInLocalStorage =[]; //création du tableau ou seront stocké les articles
+localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage)); // envoi dans le ls panierList strignify et a comme key 'panier'
 
 
-//***** Appel API *****//
+//************************ Appel API ***************************************//
 
 fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le const id
    .then(function(res) {
@@ -26,7 +24,8 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 	alert('Une erreur est survenue lors du chargement de la fiche produit');
   });
 
-//==================Fonction createProduct: création des different element de la section article==============//
+//\\//\\//\\//\\//\\//\\ FONCTION CREATPRODUCT: création des differents de la page article \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
   function createProduct(element){
 
         let article = document.createElement('article');
@@ -88,68 +87,77 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 		    article.append(button);
 		    section.appendChild(article);
    
-//***************gestion du panier ****************/
+//=============================== GESTION PANIER=================================/
 
-//addEventListener  -  Ecouter le bouton et envoyer au panier
+//envoyer au panier : Déclenché au click sur button -->
   button.addEventListener("click",(event) => {
 
-// produitSelection --> recuperation des valeurs choisi
+// produitSelection --> recuperation des valeurs choisis
 let produitSelection = {                               
   nomPdt: button.getAttribute('data-name_product'),
   idPdt: button.getAttribute('data-id_product'),
   prix: button.getAttribute('data-price_product') / 100
 };
 
-//réafecter fonction  panierList --> recuperer dans le ls 'panier' et le parser
-///panierList = JSON.parse(localStorage.getItem('panier')); 
+//stocker la recuperation des valeurs dans le LS
+// réafecter fonction  pdtInLocalStorage --> recuperer dans le ls 'panier' et le parser
+pdtInLocalStorage = JSON.parse(localStorage.getItem('panier'));
 
-//Ajoute produitSelection à la fin du tableau panierList
-///panierList.push(produitSelection);
-
-//envoi du LS panier en strignifiant panierList
-///localStorage.setItem('panier',JSON.stringify(panierList));
-///console.log('objet cliquer *************', localStorage.getItem('panier'));
-
-//Envoi du panier vers panier.html
-///window.location.href='panier.html';
-
-
-//*************stocker la recuperation des valeurs dans le LS **********************//
-  // VARIABLE pdtInLocalStorage dans laquelle on met les clé et valeur qui iront dans le LS
-pdtInLocalStorage = JSON.parse(localStorage.getItem("produit"));
-
-  //FONCTION fenetre pop up 
+//////////////FONCTION fenetre pop up////////////
 const popupConfirm = () =>{
-  if(window.confirm( `${element.name} a bien été ajouté au panier
-  Consultez le panier OK ou revenir à l'acceuil ANNULER`)){ 
-  window.location.href = "panier.html";
-}else{
-  window.location.href = "panier.html";
-} 
+
+  if(window.confirm( `${element.name} à bien été ajouté au panier
+    Consultez le panier OK ou revenir à l'acceuil ANNULER`)){ 
+      window.location.href = "panier.html";
+  }else{
+      window.location.href = "index.html";
+        } 
 }
-  //si il y a deja des pdt dans le LS
+/////////////////Fin Fonction pop up//////////////
+
+//Si pdtInlocalStorage est dans le local storage
+//Ajoute produitSelection à la fin du tableau pdtInLocalStorage
+//envoi du LS panier en strignifiant pdtInlocalSorage
 if(pdtInLocalStorage){
-  pdtInLocalStorage.push(produitSelection); //cree une variable qui contien l'id le nom et le prix
-  localStorage.setItem("produit",JSON.stringify(pdtInLocalStorage));
+  pdtInLocalStorage.push(produitSelection); 
+  localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
+  
+  console.log('objet cliqué *************', localStorage.getItem('panier'));
 
-
-  //appel fonction popup confirmation user 
-  popupConfirm(); 
+//appel fonction popup confirmation user 
+    popupConfirm(); 
 }
-  //si il n'y a pas de pdt d'enregistré dans le local storage
+
+//sinon (pas de pdt d'enregistré dans le local storage)
 else{
   pdtInLocalStorage = [];
   pdtInLocalStorage.push(produitSelection); 
-  localStorage.setItem("produit",JSON.stringify(pdtInLocalStorage));
+  localStorage.setItem('panier',JSON.stringify(produitSelection));
 
-  console.log(pdtInLocalStorage);
+  console.log(produitSelection);
   }
 })
-
 //***************FIN gestion du panier ****************/
-  
   }
-//==============================FIN Fonction createProduct===============================//
+//\\//\\//\\//\\//\\//\\//\\//\\//\\ FIN Fonction createProduct //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+
+//brouillon fais avec mentor///////////////////////////////////////////////////////////////////////////////////
+                          
+                          //réafecter fonction  pdtInLocalStorage --> recuperer dans le ls 'panier' et le parser
+                          ///pdtInLocalStorage = JSON.parse(localStorage.getItem('panier')); 
+
+                          //Ajoute produitSelection à la fin du tableau pdtInLocalStorage
+                          ///pdtInLocalStorage.push(produitSelection);
+
+                          //envoi du LS panier en strignifiant panierList
+                          ///localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
+                          ///console.log('objet cliquer *************', localStorage.getItem('panier'));
+
+                          //Envoi du panier vers panier.html
+                          ///window.location.href='panier.html';
+
+                          /////////////////////////////////////////////////////////////////////////////////////
 
 
   
