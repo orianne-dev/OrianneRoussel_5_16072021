@@ -3,7 +3,15 @@ const panierBody = document.querySelector('.panierBody');
 const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
 //Recuperation des données panier
 console.log('voici mes données panier',JSON.parse(localStorage.getItem('panier')));
+
+////////Creation du panier sous forme de tableau 
+
 //let recupPanier = [];
+
+//function showCart()
+//panier = JSON.parse(localStorage.getItem('panier))
+//showCart();
+
 //localStorage.setItem('panier',JSON.stringify(recupPanier)); // envoi dans le ls panierList strignify et a comme key panier
 
 let recupPanier = localStorage.getItem('panier');
@@ -20,9 +28,19 @@ msgPanierVide.className = "text-center";
 //recuperer info dans le panier
 //const nomPdtDansPanier = recupPanier.nomPdt;
 
+// // function pour un panier vide
+// function showCart() {
+//   //si le panier est égale à 0
+//   if (panier.length == 0) {
+//     //mise forme css annulé avec display none
+//     //insertion message dans le html
+//     //("Votre panier est vide");
+//     return;
+//   }
+
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
-//\\//\\//\\//\\//\\//\\ FONCTION CREATION DES ELEMENT DU PANIER \\//\\//\\//\\//\\//\\//\\//\\
+//\\//\\//\\//\\//\\//\\ FONCTION addPanier --> définition des elements du panier \\//\\//\\//\\//\\//\\//\\//\\
 
     let nomArticle = document.createElement('h2');
     nomArticle.className = 'article__nom card-title text-center';
@@ -53,5 +71,38 @@ let btn = document.querySelector(".btnViderPanier");
 btn.addEventListener("click", () => {
   localStorage.clear();
 })
+
+//brouillon 
+// supprimer un article
+
+// function supprimerArticle(index) {
+//   panier.splice(index, 1);
+//   showCart();
+//   saveCart();
+//   alert('Votre article est bien supprimé');
+//   }
+
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+//////// Brouillon 
+
+// création de l'object javascript item
+
+// let article = {
+//   Product: nomArticle,
+//   Price: prix,
+// };
+
+// function saveCart() {
+// if (window.localStorage) {
+// //récupération du localStorage
+//   localStorage.panier = JSON.stringify(panier);
+// }
+// }
+
+// //ajout du produit au panier
+// panier.push(article);
+// saveCart();
+// showCart();
+// }
 
