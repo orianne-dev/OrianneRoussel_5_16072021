@@ -4,7 +4,7 @@ const section = document.querySelector('.section');
 const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
 const id = params.get('id'); //Obtiens l'id du produit 
 let pdtInLocalStorage =[]; //création du tableau ou seront stocké les articles
-localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage)); // envoi dans le ls panierList strignify et a comme key 'panier'
+localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage)); // envoi dans le ls panierList strignify et a comme key panier
 
 
 //************************ Appel API ***************************************//
@@ -87,7 +87,7 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 		    article.append(button);
 		    section.appendChild(article);
    
-//=============================== GESTION PANIER=================================/
+//=============================== GESTION PANIER =================================/
 
 //envoyer au panier : Déclenché au click sur button -->
   button.addEventListener("click",(event) => {
@@ -100,7 +100,7 @@ let produitSelection = {
 };
 
 //stocker la recuperation des valeurs dans le LS
-// réafecter fonction  pdtInLocalStorage --> recuperer dans le ls 'panier' et le parser
+// réafecter fonction  pdtInLocalStorage --> recuperer dans le ls panier et le parser
 pdtInLocalStorage = JSON.parse(localStorage.getItem('panier'));
 
 //////////////FONCTION fenetre pop up////////////
@@ -157,7 +157,8 @@ else{
                           //Envoi du panier vers panier.html
                           ///window.location.href='panier.html';
 
-                          /////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
   

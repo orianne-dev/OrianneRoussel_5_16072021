@@ -1,157 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://use.fontawesome.com/c560c025cf.js"></script>
-    <script src="https://kit.fontawesome.com/1e5361eb1b.js" crossorigin="anonymous"></script>
-    <title>ORINOCO</title>
-    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/c560c025cf.js"></script>
+  <script src="https://kit.fontawesome.com/1e5361eb1b.js" crossorigin="anonymous"></script>
+  <title>ORINOCO</title>
+
 </head>
+
 <body>
+  <!----------------------------------header-------------------------->
+  <!-- Navbar -->
 
-<!----------------------------------header-------------------------->
-<!-- Navbar -->
-
-<nav class="nav bg-light justify-content-center">
+  <nav class="nav bg-light justify-content-center">
     <a href="index.html" class="nav-link text-dark">Acceuil</a>
     <a href="panier.html" class="nav-link text-dark">panier</a>
-</nav>
+  </nav>
 
-<!----------------------------------main-------------------------->
+  <!----------------------------------main-------------------------->
 
-<div class="container">
-
-<!-- En-tête du panier -->
+  <!-- Panier -->
+  <div class="container">
     <div class="header-panier card panier">
-             <div class="header-panier__contenu card-header bg-dark text-light">
-                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                 Panier
-                 <a href="index.html" class="btn btn-outline-light btn-sm pull-right">Continiuer mes achats</a>
 
-                 <div class="clearfix"></div>
-             </div>
+      <!-- En-tête du panier -->
+      <div class="header-panier__contenu card-header bg-dark text-light">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        Panier
+        <a href="index.html" class="btn btn-outline-light btn-sm pull-right">Continuer mes achats</a>
 
-<!-- body du panier  -->
-             <div class="panierBody card-body">
-                     <!-- PRODUCT -->
-            
-                     <div class="pdtPanier"></div> <!-- verif si panier marche -->
+        <div class="clearfix"></div>
+      </div>
 
-                     <div class="row">
+      <!-- body du panier  -->
+      <div class="panierBody card-body">
+        <!-- PRODUCT -->
+      </div>
 
-                        <!-- img -->
-                         <div class="panierBody__image col-12 col-sm-12 col-md-2 text-center">
-                                 <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
-                         </div>
-
-                        <!-- nom/description article -->
-                         <div class="panierBody__nom col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-                            <h4 class="product-name">
-                                 <strong>nom article</strong>
-                            </h4>
-                         </div>
-
-                        <!-- prix -->
-                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                 <h6><strong>prix</strong></h6>
-                             </div>
-                             <div class="col-4 col-sm-4 col-md-4">
-                                 <div class="quantity">
-                                     <!-- <input type="button" value="+" class="plus"> -->
-                                     <input type="number" step="1" max="10" min="1" value="1" title="Qty" class="qty"
-                                            size="4">
-                                     <!-- <input type="button" value="-" class="minus"> -->
-                                 </div>
-                             </div>
-                             <div class="col-2 col-sm-2 col-md-2 text-right">
-                                 <button type="button" class="btn btn-outline-danger btn-xs">
-                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                 </button>
-                             </div>
-                         </div>
-                     </div>
-                     <hr>
-                     <!-- END PRODUCT -->
-                     
-                 <div class="pull-right">
-                     <a href="" class="btn btn-outline-secondary pull-right">
-                         mise à jour panier
-                     </a>
-                 </div>
-             </div>
-             <div class="card-footer">
-                 <div class="pull-right" style="margin: 10px">
-                     <a href="" class="btn btn-lg btn-secondary">Valider</a>
-                     <div class="pull-right" style="margin: 5px">
-                         Total: <b>50.00€</b>
-                     </div>
-                 </div>
-             </div>
-         </div>
-
-         <!-- formulaire -->
-
-
-         <div class="col-xs-3">
-            <button type="button" class="btn btn-lg btn-secondary">
-                valider
-            </button>
+      <!-- Bouton Valider -->
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <button type="button" class="btn btn-lg btn-secondary">
+            valider
+          </button>
         </div>
- </div>
-<!----------------------------------Footer-------------------------->
+      </div>
+    </div>
+  </div>
 
-<footer class="bg-dark text-center text-white footer-article-panier">
-    <!-- Grid container -->
-    <div class="container p-4 pb-0">
-      <!-- Section: Social media -->
-      <section class="mb-4">
-        <!-- Facebook -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-  
-        <!-- Twitter -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-twitter"></i
-        ></a>
-  
-        <!-- Google -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-google"></i
-        ></a>
-  
-        <!-- Instagram -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-instagram"></i
-        ></a>
-  
-        <!-- Linkedin -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-linkedin-in"></i
-        ></a>
-  
-        <!-- Github -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-github"></i
-        ></a>
-      </section>
-      <!-- Section: Social media -->
-    </div>
-    <!-- Grid container -->
-  
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2021 Copyright:
-      <a class="text-white" href="#!">orinoco.com</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
-    
-    <script src="/js/panier.js"></script>
+  <!-- formulaire -->
+
+  <!----------------------------------Footer-------------------------->
+
+  <script src="/js/panier.js"></script>
 </body>
+
 </html>
