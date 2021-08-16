@@ -3,8 +3,6 @@
 const section = document.querySelector('.section'); 
 const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
 const id = params.get('id'); //Obtiens l'id du produit 
-let pdtInLocalStorage =[]; //création du tableau ou seront stocké les articles
-localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage)); // envoi dans le ls panierList strignify et a comme key panier
 
 
 //************************ Appel API ***************************************//
@@ -48,7 +46,7 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
         buttonLenses.toggleAttribute = "dropdown";
         buttonLenses.ariaExpanded = 'false';
         //Probleme pour afficher la liste des lentilles
-        //S'affiche dans le DOM mais pas sur le navigateur
+        //S'affiche dans le DOM mais pas sur le navigateur???
 
         let listLenses = document.createElement('ul');
         listLenses.className = 'dropdown-menu';
@@ -88,20 +86,17 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 		    section.appendChild(article);
    
 //=============================== GESTION PANIER =================================/
+//fonction pop up ne marche qu'au 2eme click ?????
 
 //envoyer au panier : Déclenché au click sur button -->
   button.addEventListener("click",(event) => {
-
+    
 // produitSelection --> recuperation des valeurs choisis
 let produitSelection = {                               
   nomPdt: button.getAttribute('data-name_product'),
   idPdt: button.getAttribute('data-id_product'),
   prix: button.getAttribute('data-price_product') / 100
 };
-
-//stocker la recuperation des valeurs dans le LS
-// réafecter fonction  pdtInLocalStorage --> recuperer dans le ls panier et le parser
-pdtInLocalStorage = JSON.parse(localStorage.getItem('panier'));
 
 //////////////FONCTION fenetre pop up////////////
 const popupConfirm = () =>{
@@ -115,9 +110,16 @@ const popupConfirm = () =>{
 }
 /////////////////Fin Fonction pop up//////////////
 
+//stocker la recuperation des valeurs dans le LS
+// réafecter fonction  pdtInLocalStorage --> recuperer dans le ls panier et le parser
+let pdtInLocalStorage = JSON.parse(localStorage.getItem('panier'));
+
+
 //Si pdtInlocalStorage est dans le local storage
 //Ajoute produitSelection à la fin du tableau pdtInLocalStorage
 //envoi du LS panier en strignifiant pdtInlocalSorage
+console.log('panier initial de la page produit : ', pdtInLocalStorage)
+
 if(pdtInLocalStorage){
   pdtInLocalStorage.push(produitSelection); 
   localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
@@ -132,7 +134,7 @@ if(pdtInLocalStorage){
 else{
   pdtInLocalStorage = [];
   pdtInLocalStorage.push(produitSelection); 
-  localStorage.setItem('panier',JSON.stringify(produitSelection));
+  localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
 
   console.log(produitSelection);
   }
@@ -141,21 +143,6 @@ else{
   }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\ FIN Fonction createProduct //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
-
-//brouillon fais avec mentor///////////////////////////////////////////////////////////////////////////////////
-                          
-                          //réafecter fonction  pdtInLocalStorage --> recuperer dans le ls 'panier' et le parser
-                          ///pdtInLocalStorage = JSON.parse(localStorage.getItem('panier')); 
-
-                          //Ajoute produitSelection à la fin du tableau pdtInLocalStorage
-                          ///pdtInLocalStorage.push(produitSelection);
-
-                          //envoi du LS panier en strignifiant panierList
-                          ///localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
-                          ///console.log('objet cliquer *************', localStorage.getItem('panier'));
-
-                          //Envoi du panier vers panier.html
-                          ///window.location.href='panier.html';
 
 
 
