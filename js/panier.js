@@ -116,3 +116,48 @@ btn.addEventListener("click", () => {
 // showCart();
 // }
 
+//\\//\\//\\//\\//\\//\\//\\//\\//\\ FORMULAIRE //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+// envoyer du JSON a l'API il faut transformer l'objet javaScript en JSON --> JSON.stringify()
+// effectuer une requete de type POST avec la fonction fetch()
+
+//creation objet contact
+
+// const contact = {
+//   firstName: neant,
+//   lastName: neant,
+//   adress: neant,
+//   city: neant,
+//   email: neant
+// };
+
+// const promisePost = fetch("http://localhost:3000/api/cameras/order", {
+//   method: "POST",
+//   body: JSON.stringify(contact),
+//   headers: {
+//     "content-type": "application/json"
+//   },
+// });
+
+// promisePost.then(response) => {
+//   try{
+//     console.log(response);
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
+
+// const firstName = document.getElementById('firstName');
+// firstName.setCustomValidity('Pour valider, renseigner votre prénom');
+
+// const lastName = document.getElementById('lastName');
+// lastName.setCustomValidity('Pour valider, renseigner votre nom');
+
+// const adress = document.getElementById('adress');
+// adress.setCustomValidity('Pour valider, renseigner votre adresse');
+
+// const city = document.getElementById('city');
+// city.setCustomValidity('Pour valider, renseigner votre ville');
+
+// const email = document.getElementById('email');
+// email.setCustomValidity('Pour valider, renseigner votre email');
