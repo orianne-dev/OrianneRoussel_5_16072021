@@ -1,5 +1,6 @@
 //******************** Déclaraton des variables *****************************//
 const panierBody = document.querySelector('.panierBody'); 
+const tbody = document.querySelector('tbody');
 //const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
 //Recuperation des données panier
 console.log('voici mes données panier',JSON.parse(localStorage.getItem('panier')));
@@ -42,33 +43,41 @@ msgPanierVide.className = "text-center";
 if (recupPanier) { 
   for(let j=0; j < recupPanier.length ; j++){
 
-    let nomArticle = document.createElement('h2');
-      nomArticle.className = 'article__nom card-title text-center';
-      nomArticle.textContent = recupPanier[j].nomPdt;
+    let ligneTableau = document.createElement('tr');
+
+    let nomArticle = document.createElement('th');
+    nomArticle.className = 'article__nom';  
+    nomArticle.textContent = recupPanier[j].nomPdt;
   
-      let prix = document.createElement('p');
-      prix.className = 'article__prix text-center';
-      prix.textContent = recupPanier[j].prix + "€"; 
-  
-  
-      // nomArticle.innerText = recupPanier.nomPdt;
-      // prix.innerText = recupPanier.prix / 100 + "€";
-   
-      panierBody.appendChild(nomArticle);
-      panierBody.appendChild(prix);
-      
+    let prix = document.createElement('td');
+    prix.className = 'article__prix';
+    prix.textContent = recupPanier[j].prix + "€"; 
+
+    let tdSupprimer = document.createElement('td');
+    let btnSupprimeArticle = document.createElement('button');
+    btnSupprimeArticle.setAttribute('class','btn-sup bg-dark text-light'); 
+		//btnSupprimeArticle.textContent('Supprimer'); 
+		    // button.setAttribute('data-name_product', element.name);
+		    // button.setAttribute('data-price_product', element.price); 
+		btnSupprimeArticle.innerHTML = '<i class="fas fa-trash-alt"></i> Supprimer';
+		
+    tbody.appendChild(ligneTableau);
+    ligneTableau.appendChild(nomArticle);
+    ligneTableau.appendChild(prix);
+    ligneTableau.appendChild(tdSupprimer);
+    tdSupprimer.appendChild(btnSupprimeArticle);
   
   }
 }else{
-  panierBody.innerHTML ='<h2 class = "text-center">Le panier est vide </h2>'
+  panierBody.innerHTML ='<h2 class = "text-panierVide text-center">Le panier est vide </h2>'
 }
 
 
 let buttonDelete = document.createElement("button");	
 buttonDelete.setAttribute('class','btnViderPanier product-link btn btn-dark');  
 buttonDelete.textContent = 'Vider le panier';
-
-panierBody.appendChild(buttonDelete);
+const btnPanier = document.querySelector('.btn-panier');
+btnPanier.appendChild(buttonDelete);
 
 //document.querySelector('.panierRep').innerHTML = localStorage.getItem('panier');
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\

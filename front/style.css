@@ -8,6 +8,7 @@
 
 body {
     height: 100vh;
+    background: #f1f1f1;
 }
 
 .text-dark {
@@ -43,3 +44,75 @@ body {
     padding-top: 50px;
 }
 
+.btn-supp{
+    border: none;
+}
+
+.container-form{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 50px;
+    width: 700px;
+    height: auto;
+    background: #292b2c;
+    border-radius: 5px;
+}
+
+.boxForm {
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+.titre-formulaire {
+    margin-top: 0;
+    text-align: center;
+    color: #f1f1f1;
+}
+.titre-formulaire {
+    
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    top: 10px;
+}
+
+
+.labelEmail, .labelTxt {
+    color: #f1f1f1;
+    display: block;
+    margin: 0 auto;
+    width: 95%;
+    position: relative;
+    top: 7px;
+}
+
+.flexInp {
+    margin: 20px auto;
+    outline: 0;
+    background: #f1f1f1;
+    width: 90%;
+    border: 0;
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.labelFlex {
+    color: #f1f1f1;
+    position: relative;
+    top: 8px;
+}
+.btn-form {
+    width: 45%;
+    display: block;
+    margin: 45px auto 0 auto;
+    outline: none;
+    border: 0;
+    height: 50px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 17px;
+}
+.btn-form:hover {
+    background: rgb(187, 195, 187);
+}

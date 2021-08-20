@@ -41,14 +41,29 @@
       <!-- body du panier  -->
       <div class="panierBody card-body">
         <!-- PRODUCT -->
-      </div>
 
-      <!-- Bouton Valider -->
-      <div class="row justify-content-center">
-        <div class="col-3">
-          <button type="button" class="btn btn-lg btn-secondary">
-            valider
-          </button>
+        <table class="table table-borderless table-dark">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Prix</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- ajout article js -->
+          </tbody>
+        </table>
+
+        <!-- fin product -->
+        <!-- Bouton Valider -->
+        <div class="row justify-content-center">
+          <div class=" btn-panier">
+            <button type="button" class="btn btn-dark btnValidePanier">
+              <!-- btn-lg btn-secondary-->
+              valider
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -70,43 +85,40 @@
   Notez que l’événement submit se déclenche uniquement sur l’élement form, 
   et pas sur les éléments button ou input submit. (Les formulaires sont soumis, 
   pas les boutons.) -->
+  <div class="boxForm">
+    <div class="container-form">
+
+      <h2 class="titre-formulaire">Merci de valider le formulaire pour passer commande</h2>
 
 
-  <form action="http://google.com" metode="POST">
+      <form action="http://google.com" metode="POST">
 
-    <label for="firstName">Renseigner votre pénom</label>
-    <br>
-    <input id="firstName" name="contact" placeholder="Votre prénom" type="text" required>
+        <label for="firstName" class="labelFlex">Entrez votre pénom</label>
+        <input id="firstName" name="contact" placeholder="Votre prénom" type="text" required maxlength="35"
+          class="flexInp">
 
-    <br><br>
+        <label for="lastName" class="labelFlex">Entrez votre nom</label>
+        <input id="lastName" name="contact" placeholder="Votre nom" type="text" required maxlength="35" class="flexInp">
 
-    <label for="lastName">Renseigner votre nom</label>
-    <br>
-    <input id="lastName" name="contact" placeholder="Votre nom" type="text" required>
+        <label for="address" class="labelFlex">Entrez votre adresse</label>
+        <input id="adress" name="contact" placeholder="Votre adresse" class="flexInp" type="text" required>
 
-    <br><br>
+        <label for="city" class="labelFlex">Entrez votre ville</label>
+        <input id="city" name="contact" placeholder="Votre ville" class="flexInp" type="text" required>
 
-    <label for="address">Renseigner votre adresse</label>
-    <br>
-    <input id="adress" name="contact" placeholder="Votre adresse" type="text" required>
+        <label class="labelFlex" for="email">Entrez votre email</label>
+        <br>
+        <input id="email" name="contact" placeholder="Votre email" type="email" required class="flexInp" required
+          maxlength="50">
 
-    <br><br>
+        <button class="btn-form">Envoyer</button>
 
-    <label for="city">Renseigner votre ville</label>
-    <br>
-    <input id="city" name="contact" placeholder="Votre ville" type="text" required>
+      </form>
+    </div>
+  </div>
 
-    <br><br>
 
-    <label for="email">Renseigner votre email</label>
-    <br>
-    <input id="email" name="contact" placeholder="Votre email" type="email" required>
 
-    <br><br>
-
-    <button>Envoyer</button>
-
-  </form>
 
   <!-- <form action=""> l'attribut action est l'endroit ou on envoit nos données -->
   <!-- <input type="email" name="" id=""> permet davoir directement une validation integré -->
@@ -136,106 +148,43 @@
 
 
   <!----------------------------------Footer-------------------------->
+  <footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+        <!-- Twitter -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+        <!-- Google -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+        <!-- Instagram -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+        <!-- Linkedin -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+
+        <!-- Github -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+      </section>
+      <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2021 Copyright:
+      <a class="text-white" href="#!">orinoco.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
 
   <script src="/js/panier.js"></script>
 </body>
 
 </html>
-
-
-
-<!----------------------------------test-------------------------->
-
-<!-- <table>
-  <thead>
-    <tr>
-
-      <th scope="col">Name</th>
-
-      <th scope="col">Option</th>
-
-      <th scope="col">Price</th>
-
-      <th scope="col">Quantity</th>
-
-      <th scope="col">Subtotal</th>
-
-      <th scope="col">Remove</th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <tr data-category="" data-id="" data-name="" data-option="" data-quantity="">
-      <th><a href="" data-router="" data-event="true"></a></th>
-
-      <td><span>Options: </span></td>
-
-      <td><span>Price: </span></td>
-
-      <td><span>Quantity: </span>
-        <select data-cart="select">
-
-          <option selected="" value="1">
-            1
-          </option>
-
-          <option value="2">
-            2
-          </option>
-
-          <option value="3">
-            3
-          </option>
-
-          <option value="4">
-            4
-          </option>
-
-          <option value="5">
-            5
-          </option>
-
-          <option value="6">
-            6
-          </option>
-
-          <option value="7">
-            7
-          </option>
-
-          <option value="8">
-            8
-          </option>
-
-          <option value="9">
-            9
-          </option>
-
-          <option value="10">
-            10
-          </option>
-
-        </select>
-      </td>
-
-      <td><span>Subtotal: </span></td>
-
-      <td><span>Remove: </span>
-        <button data-cart="remove">
-          <svg class="svg-icon" focusable="false" role="img" aria-hidden="true">
-            <use href="#trash-icon"></use>
-          </svg>
-        </button>
-      </td>
-
-    </tr>
-
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>Total: <b></b></td>
-    </tr>
-  </tfoot>
-</table> -->
-<!----------------------------------fin test-------------------------->
