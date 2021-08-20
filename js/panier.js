@@ -1,19 +1,9 @@
 //******************** Déclaraton des variables *****************************//
 const panierBody = document.querySelector('.panierBody'); 
 const tbody = document.querySelector('tbody');
-//const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
+
 //Recuperation des données panier
 console.log('voici mes données panier',JSON.parse(localStorage.getItem('panier')));
-
-////////Creation du panier sous forme de tableau 
-
-//let recupPanier = [];
-
-//function showCart()
-//panier = JSON.parse(localStorage.getItem('panier))
-//showCart();
-
-//localStorage.setItem('panier',JSON.stringify(recupPanier)); // envoi dans le ls panierList strignify et a comme key panier
 
 let recupPanier = JSON.parse(localStorage.getItem('panier'));
 
@@ -56,10 +46,7 @@ if (recupPanier) {
     let tdSupprimer = document.createElement('td');
     let btnSupprimeArticle = document.createElement('button');
     btnSupprimeArticle.setAttribute('class','btn-sup bg-dark text-light'); 
-		//btnSupprimeArticle.textContent('Supprimer'); 
-		    // button.setAttribute('data-name_product', element.name);
-		    // button.setAttribute('data-price_product', element.price); 
-		btnSupprimeArticle.innerHTML = '<i class="fas fa-trash-alt"></i> Supprimer';
+	  btnSupprimeArticle.innerHTML = '<i class="fas fa-trash-alt"></i> Supprimer';
 		
     tbody.appendChild(ligneTableau);
     ligneTableau.appendChild(nomArticle);
@@ -68,7 +55,8 @@ if (recupPanier) {
     tdSupprimer.appendChild(btnSupprimeArticle);
   
   }
-}else{
+}
+else{
   panierBody.innerHTML ='<h2 class = "text-panierVide text-center">Le panier est vide </h2>'
 }
 
@@ -84,6 +72,8 @@ btnPanier.appendChild(buttonDelete);
 
 
 //\\//\\//\\//\\//\\//\\ VIDER LE PANIER \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+//vider tout le panier
 let btn = document.querySelector(".btnViderPanier");
 
 btn.addEventListener("click", () => {
@@ -92,7 +82,46 @@ btn.addEventListener("click", () => {
 })
 
 //brouillon 
-// supprimer un article
+//*********************  supprimer un article  **************************************
+
+//selection des references de tous les boutons btnSupprimeArticle
+let btnsSupprimeArticle = document.querySelectorAll('.btn-sup');
+console.log(btnsSupprimeArticle);
+
+for (let k = 0; k < btnsSupprimeArticle.length; k++){
+  btnsSupprimeArticle[k].addEventListener('click' , (event) =>{
+   event.preventDefault();
+
+//Selection de l'id du produit qui va être supprimé en cliquant sur le bouton
+let selectIdSupprime = recupPanier[k].idPdt;
+//console.log(selectIdSupprime);
+
+//Selectionner les element a garder et supp l'element cliqué
+recupPanier = recupPanier.filter( el => el.idPdt !== selectIdSupprime);
+  console.log(recupPanier);
+
+//Supprimer les elements dans le LS
+//mettre en format JSON et envoyer dans le ls
+localStorage.setItem("panier", JSON.stringify(recupPanier));
+
+//alert --> notifier que le produit a été supprimer et recharger la page
+alert("Ce produit a été supprimé du panier");
+window.location.href = "panier.html";
+})
+}
+
+//fonction supprimer l'article
+// function supprArticle(selectIdSupprime) {
+//   for (let i = recupPanier.length - 1; i >= 0; --i) {
+//     if (i === selectIdSupprime) {
+//       alert('jai trouvé');
+//       panier.splice(i, 1);
+//     }
+//   }
+//   window.location.reload();
+// }
+// //console.log(supprArticle);
+// supprArticle(selectIdSupprime);
 
 // function supprimerArticle(index) {
 //   panier.splice(index, 1);
@@ -102,6 +131,36 @@ btn.addEventListener("click", () => {
 //   }
 
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+//\\//\\//\\//\\//\\//\\ TOTAL PANIER \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+//Declaration de la variable prixTotalCalcul pour y mettre les prix present dans le panier
+ let prixTotalCalcul = [];
+
+ //Aller chercher les prix dans le panier
+ for (let m = 0; m < recupPanier.length; m++){
+   let prixProduitDansLePanier = recupPanier[m].prix;
+
+   //Mettre les prix du panier dans la variable "prixTotalCalcul"
+   prixTotalCalcul.push(prixProduitDansLePanier);
+   console.log(prixTotalCalcul);
+ }
+
+ //additionner les prix qu'il y a dans le tableau de la variable "prixTotalCalcul" avec la methode .reduce
+ const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const prixTotal = prixTotalCalcul.reduce(reducer,0);
+
+console.log(prixTotal);
+
+//Le code HTML du prix total à afficher 
+const  afficherPrixTotal = `<p class="afficherPrixTotal">Le prix total est de : ${prixTotal} € </p>`;
+
+//injection HTML 
+const d1 = document.querySelector('#one');
+d1.insertAdjacentHTML('afterend', afficherPrixTotal);
+//\\//\\//\\//\\//\\//\\ FIN TOTAL PANIER \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+
+
 
 //////// Brouillon 
 
@@ -126,6 +185,7 @@ btn.addEventListener("click", () => {
 // }
 
 //\\//\\//\\//\\//\\//\\//\\//\\//\\ FORMULAIRE //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
 
 // envoyer du JSON a l'API il faut transformer l'objet javaScript en JSON --> JSON.stringify()
 // effectuer une requete de type POST avec la fonction fetch()
