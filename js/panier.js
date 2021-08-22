@@ -81,7 +81,6 @@ btn.addEventListener("click", () => {
   panierBody.innerHTML ='<h2 class = "text-center">Le panier est vide </h2>'
 })
 
-//brouillon 
 //*********************  supprimer un article  **************************************
 
 //selection des references de tous les boutons btnSupprimeArticle
@@ -185,6 +184,48 @@ d1.insertAdjacentHTML('afterend', afficherPrixTotal);
 // }
 
 //\\//\\//\\//\\//\\//\\//\\//\\//\\ FORMULAIRE //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+//selection du bouton envoyer le formulaire
+const btnForm = document.querySelector('.btn-form');
+
+//************************ addEventListener ***********************/
+btnForm.addEventListener('click', (e) =>{
+  e.preventDefault();
+
+
+
+//Recuperation des valeurs du formulaire pour les mettre dans le local storage
+localStorage.setItem("firstName", document.querySelector("#firstName").value);
+localStorage.setItem("lastName", document.querySelector("#lastName").value);
+localStorage.setItem("adress", document.querySelector("#adress").value);
+localStorage.setItem("city", document.querySelector("#city").value);
+localStorage.setItem("email", document.querySelector("#email").value);
+
+//Mettre les valeurs du formulaire dans un objet
+const contact = {
+  firstName: localStorage.getItem('firstName'),
+  lastName: localStorage.getItem('lastName'),
+  adress: localStorage.getItem('adress'),
+  city: localStorage.getItem('city'),
+  email: localStorage.getItem('email')
+};
+console.log(contact);
+
+//Mettre les values du formulaire et mettre les produits selectionnés dans un objet à envoyer vers le serveur
+const aEnvoyer = {
+  recupPanier,
+  contact
+}
+
+//envoi de l'objet aEnvoyer au serveur
+
+})
+
+
+
+
+
+
+
 
 
 // envoyer du JSON a l'API il faut transformer l'objet javaScript en JSON --> JSON.stringify()
@@ -230,3 +271,49 @@ d1.insertAdjacentHTML('afterend', afficherPrixTotal);
 
 // const email = document.getElementById('email');
 // email.setCustomValidity('Pour valider, renseigner votre email');
+
+
+//************************************************** */
+
+// const afficherformulaireHtml = () =>{
+
+//   //selection ellement du DOM pour le positionnement du formulaire
+//   const boxForm = document.querySelector('.boxForm');
+//   const structureFormulaire = ` 
+
+//     <div class="container-form">
+
+//       <h2 class="titre-formulaire">Merci de valider le formulaire pour passer commande</h2>
+
+
+//       <form action="http://google.com" metode="POST">
+
+//         <label for="firstName" class="labelFlex">Entrez votre pénom</label>
+//         <input id="firstName" name="contact" placeholder="Votre prénom" type="text" required maxlength="35"
+//           class="flexInp">
+
+//         <label for="lastName" class="labelFlex">Entrez votre nom</label>
+//         <input id="lastName" name="contact" placeholder="Votre nom" type="text" required maxlength="35" class="flexInp">
+
+//         <label for="address" class="labelFlex">Entrez votre adresse</label>
+//         <input id="adress" name="contact" placeholder="Votre adresse" class="flexInp" type="text" required>
+
+//         <label for="city" class="labelFlex">Entrez votre ville</label>
+//         <input id="city" name="contact" placeholder="Votre ville" class="flexInp" type="text" required>
+
+//         <label class="labelFlex" for="email">Entrez votre email</label>
+//         <br>
+//         <input id="email" name="contact" placeholder="Votre email" type="email" required class="flexInp" required
+//           maxlength="50">
+
+//         <button class="btn-form">Envoyer</button>
+
+//       </form>
+//     </div>` ;
+    
+// //injection HTML
+// boxForm.insertAdjacentHTML("afterend", structureFormulaire);
+// };
+
+// //afficher le formulaire
+// afficherformulaireHtml();
