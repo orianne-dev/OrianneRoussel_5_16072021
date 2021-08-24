@@ -5,7 +5,7 @@ const tbody = document.querySelector('tbody');
 //Recuperation des données panier
 console.log('voici mes données panier',JSON.parse(localStorage.getItem('panier')));
 
-let recupPanier = JSON.parse(localStorage.getItem('panier'));
+let products = JSON.parse(localStorage.getItem('panier'));
 
 //\\//\\//\\//\\//\\//\\ MSG PANIER VIDE \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
@@ -15,7 +15,7 @@ msgPanierVide.className = "text-center";
 
 // const msgPanierVide = () =>{
 //recuperer info dans le panier
-//const nomPdtDansPanier = recupPanier.nomPdt;
+//const nomPdtDansPanier =  products.nomPdt;
 
 // // function pour un panier vide
 // function showCart() {
@@ -30,18 +30,18 @@ msgPanierVide.className = "text-center";
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 //\\//\\//\\//\\//\\//\\ FONCTION addPanier --> définition des elements du panier \\//\\//\\//\\//\\//\\//\\//\\
-if (recupPanier) { 
-  for(let j=0; j < recupPanier.length ; j++){
+if (products) { 
+  for(let j=0; j < products.length ; j++){
 
     let ligneTableau = document.createElement('tr');
 
     let nomArticle = document.createElement('th');
     nomArticle.className = 'article__nom';  
-    nomArticle.textContent = recupPanier[j].nomPdt;
+    nomArticle.textContent = products[j].nomPdt;
   
     let prix = document.createElement('td');
     prix.className = 'article__prix';
-    prix.textContent = recupPanier[j].prix + "€"; 
+    prix.textContent = products[j].prix + "€"; 
 
     let tdSupprimer = document.createElement('td');
     let btnSupprimeArticle = document.createElement('button');
@@ -92,16 +92,16 @@ for (let k = 0; k < btnsSupprimeArticle.length; k++){
    event.preventDefault();
 
 //Selection de l'id du produit qui va être supprimé en cliquant sur le bouton
-let selectIdSupprime = recupPanier[k].idPdt;
+let selectIdSupprime = products[k].idPdt;
 //console.log(selectIdSupprime);
 
 //Selectionner les element a garder et supp l'element cliqué
-recupPanier = recupPanier.filter( el => el.idPdt !== selectIdSupprime);
-  console.log(recupPanier);
+products = products.filter( el => el.idPdt !== selectIdSupprime);
+  console.log(products);
 
 //Supprimer les elements dans le LS
 //mettre en format JSON et envoyer dans le ls
-localStorage.setItem("panier", JSON.stringify(recupPanier));
+localStorage.setItem("panier", JSON.stringify(products));
 
 //alert --> notifier que le produit a été supprimer et recharger la page
 alert("Ce produit a été supprimé du panier");
@@ -111,7 +111,7 @@ window.location.href = "panier.html";
 
 //fonction supprimer l'article
 // function supprArticle(selectIdSupprime) {
-//   for (let i = recupPanier.length - 1; i >= 0; --i) {
+//   for (let i = products.length - 1; i >= 0; --i) {
 //     if (i === selectIdSupprime) {
 //       alert('jai trouvé');
 //       panier.splice(i, 1);
@@ -136,8 +136,8 @@ window.location.href = "panier.html";
  let prixTotalCalcul = [];
 
  //Aller chercher les prix dans le panier
- for (let m = 0; m < recupPanier.length; m++){
-   let prixProduitDansLePanier = recupPanier[m].prix;
+ for (let m = 0; m < products.length; m++){
+   let prixProduitDansLePanier = products[m].prix;
 
    //Mettre les prix du panier dans la variable "prixTotalCalcul"
    prixTotalCalcul.push(prixProduitDansLePanier);
@@ -158,32 +158,7 @@ const d1 = document.querySelector('#one');
 d1.insertAdjacentHTML('afterend', afficherPrixTotal);
 //\\//\\//\\//\\//\\//\\ FIN TOTAL PANIER \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
-
-
-
-//////// Brouillon 
-
-// création de l'object javascript item
-
-// let article = {
-//   Product: nomArticle,
-//   Price: prix,
-// };
-
-// function saveCart() {
-// if (window.localStorage) {
-// //récupération du localStorage
-//   localStorage.panier = JSON.stringify(panier);
-// }
-// }
-
-// //ajout du produit au panier
-// panier.push(article);
-// saveCart();
-// showCart();
-// }
-
-//\\//\\//\\//\\//\\//\\//\\//\\//\\ FORMULAIRE //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+//\\//\\//\\//\\//\\//\\//\\//\\//\\ FORMULAIRE //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 //selection du bouton envoyer le formulaire
 const btnForm = document.querySelector('.btn-form');
 
@@ -191,34 +166,146 @@ const btnForm = document.querySelector('.btn-form');
 btnForm.addEventListener('click', (e) =>{
   e.preventDefault();
 
+//Creation de l'objet "contact" recuperation des valeurs du formulaire
+const  contact = {
+  firstName: document.querySelector("#firstName").value,
+  lastName: document.querySelector("#lastName").value,
+  adress: document.querySelector("#adress").value,
+  city: document.querySelector("#city").value,
+  email: document.querySelector("#email").value
+}
+//console.log(contact);
 
-
-//Recuperation des valeurs du formulaire pour les mettre dans le local storage
-localStorage.setItem("firstName", document.querySelector("#firstName").value);
-localStorage.setItem("lastName", document.querySelector("#lastName").value);
-localStorage.setItem("adress", document.querySelector("#adress").value);
-localStorage.setItem("city", document.querySelector("#city").value);
-localStorage.setItem("email", document.querySelector("#email").value);
-
-//Mettre les valeurs du formulaire dans un objet
-const contact = {
-  firstName: localStorage.getItem('firstName'),
-  lastName: localStorage.getItem('lastName'),
-  adress: localStorage.getItem('adress'),
-  city: localStorage.getItem('city'),
-  email: localStorage.getItem('email')
+//******************** Validation du formulaire ***********************/
+//valider prenom
+const firstNameValide = contact.firstName;
+if(/^[A-Za-z]+$/.test(firstNameValide)){
+  console.log("OK");
+}else{
+  console.log("ko");
+  alert("Merci de rentrer un nom valide !");
 };
-console.log(contact);
+
+//valider nom
+const lastNameValide = contact.lastName;
+if(/^[A-Za-z]+$/.test(lastNameValide)){
+  console.log("OK");
+}else{
+  console.log("KO");
+  alert("Merci de rentrer un nom valide !");
+};
+
+//valider adress
+const adressValide = contact.adress;
+if(/^[a-zA-Z0-9\s,'-]*$/.test(adressValide)){
+  console.log("OK");
+}else{
+  console.log("ko");
+  alert("Merci de rentrer une adresse valide !");
+};
+
+//valider city
+const cityValide = contact.city;
+if(/[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/.test(cityValide)){
+  console.log("OK");
+}else{
+  console.log("ko");
+  alert("Merci de rentrer une ville valide !");
+};
+
+//valider email
+const emailValide = contact.email;
+if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailValide)){
+  console.log("OK");
+}else{
+  console.log("ko");
+  alert("Merci de rentrer un email valide !");
+};
+
+//controle validité formulaire avant envoi au local storage
+// if (firstNameValide() && lastNameValide() && adressValide() && cityValide() && emailValide()) {
+//   localStorage.setItem("contact", JSON.stringify(contact));
+// }else{
+//   alert("erreur");
+// }
+
+//Mettre l'objet "contact" dans le local storage
+localStorage.setItem("contact", JSON.stringify(contact));
 
 //Mettre les values du formulaire et mettre les produits selectionnés dans un objet à envoyer vers le serveur
-const aEnvoyer = {
-  recupPanier,
-  contact
+const objetPost = {
+  contact,
+  products
 }
+console.log(objetPost);
+
+//******************** fin Validation du formulaire ***********************/
+
 
 //envoi de l'objet aEnvoyer au serveur
+const promise01 = fetch("http://localhost:3000/api/cameras/order", {
+  method: "POST",
+  body: JSON.stringify(objetPost),
+  headers: {
+    "content-Type" : "application/json",
+  },
+});
+
+console.log(promise01);
+
+//Pour voir le resultat du serveur dans la console
+promise01.then(async(response)=>{
+  try{
+    console.log(response);
+
+    const contenu = await response.json();
+    console.log(continu);
+
+if(response.ok){
+  console.log(`Resultat de response.ok : ${response.ok}`);
+}else{
+  console.log(`Reponse du serveur : ${response.status}`);
+
+}
+
+
+  }catch(erreur){
+    console.log(erreur);
+  }
+})
 
 })
+//************************ Fin addEventListener ***********************/
+
+
+
+//********************* mettre le contenu du localstorage dans les champs du formulaire ***********/
+//Prendre la key dans le localStorage et la mettre dans une variable 
+// const datalocalStorage = localStorage.getItem("contact");
+
+// //convertir la chaine de caractere en objet javascript
+// const datalocalStorageObjet = JSON.parse(datalocalStorage);
+// console.log(datalocalStorage);
+
+// //mettre les values du localstorage dans le formulaire
+// document.querySelector('#firstName').setAttribute('value', datalocalStorageObjet.firstName);
+// document.querySelector('#lastName').setAttribute('value', datalocalStorageObjet.lastName);
+// document.querySelector('#adress').setAttribute('value', datalocalStorageObjet.adress);
+// document.querySelector('#city').setAttribute('value', datalocalStorageObjet.city);
+// document.querySelector('#email').setAttribute('value', datalocalStorageObjet.email);
+
+//fonction " " --> le formulaire garde les donner meme si la page est rafraichis
+// function remplirInputDepuisLocalStorage(){
+//   document.querySelector("input").value = datalocalStorageObjet[input];
+// };
+
+// remplirInputDepuisLocalStorage("firstName");
+// remplirInputDepuisLocalStorage("laststName");
+// remplirInputDepuisLocalStorage("adress");
+// remplirInputDepuisLocalStorage("city");
+// remplirInputDepuisLocalStorage("email");
+
+//********************************************************************************************************/
 
 
 
