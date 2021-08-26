@@ -130,7 +130,7 @@ btnForm.addEventListener('click', (e) =>{
 const  contact = {
   firstName: document.querySelector("#firstName").value,
   lastName: document.querySelector("#lastName").value,
-  adress: document.querySelector("#adress").value,
+  address: document.querySelector("#address").value,
   city: document.querySelector("#city").value,
   email: document.querySelector("#email").value
 }
