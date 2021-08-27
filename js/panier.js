@@ -220,6 +220,15 @@ promise01.then(async(response)=>{
 
 if(response.ok){
   console.log(`Resultat de response.ok : ${response.ok}`);
+  //recuperation de l'id de la reponse serveur
+  console.log('id de response');
+  console.log(contenu.orderId);
+
+  //Mettre l'id dans le local storage
+  localStorage.setItem("orderId", contenu.orderId);
+
+  //Aller vers la page confirmation
+  window.location = "confirmation.html";
 }else{
   console.log(`Reponse du serveur : ${response.status}`);
 
@@ -245,23 +254,25 @@ if(response.ok){
 
 // //convertir la chaine de caractere en objet javascript
 // const datalocalStorageObjet = JSON.parse(datalocalStorage);
+// console.log('datalocalStorage');
+
 // console.log(datalocalStorage);
 
-// //mettre les values du localstorage dans le formulaire
+//mettre les values du localstorage dans le formulaire
 // document.querySelector('#firstName').setAttribute('value', datalocalStorageObjet.firstName);
 // document.querySelector('#lastName').setAttribute('value', datalocalStorageObjet.lastName);
-// document.querySelector('#adress').setAttribute('value', datalocalStorageObjet.adress);
+// document.querySelector('#address').setAttribute('value', datalocalStorageObjet.address);
 // document.querySelector('#city').setAttribute('value', datalocalStorageObjet.city);
 // document.querySelector('#email').setAttribute('value', datalocalStorageObjet.email);
 
-//fonction " " --> le formulaire garde les donner meme si la page est rafraichis
+// //fonction " " --> le formulaire garde les donner meme si la page est rafraichis
 // function remplirInputDepuisLocalStorage(){
 //   document.querySelector("input").value = datalocalStorageObjet[input];
 // };
 
 // remplirInputDepuisLocalStorage("firstName");
 // remplirInputDepuisLocalStorage("laststName");
-// remplirInputDepuisLocalStorage("adress");
+// remplirInputDepuisLocalStorage("address");
 // remplirInputDepuisLocalStorage("city");
 // remplirInputDepuisLocalStorage("email");
 

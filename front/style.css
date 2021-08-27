@@ -116,3 +116,12 @@ body {
 .btn-form:hover {
     background: rgb(187, 195, 187);
 }
+
+.recap-commande {
+    width: 80vw;
+    border: 1px solid black;
+}
+
+.numero-commande {
+    font-weight: bold;
+}
