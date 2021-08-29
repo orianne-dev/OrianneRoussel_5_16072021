@@ -31,12 +31,14 @@ fetch('http://localhost:3000/api/cameras')     //fetch appel le serveur
 
         let lien = document.createElement('a');
         lien.setAttribute('href', 'article.html?id=' + cameras[i]._id); //on appel l'index en cours dans la boucle de cameras
-        lien.className = 'article__lien text-center';
+        lien.className = 'article__lien text-center btn btn-dark';
+
+
     
         name.innerText = cameras[i].name;
         description.innerText = cameras[i].description;
         prix.innerText = cameras[i].price / 100 + "€";
-        lien.innerText = cameras[i]._id;
+        lien.innerText = "Voir article";
 
         article.appendChild(card);
         card.appendChild(img);

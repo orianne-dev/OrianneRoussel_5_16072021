@@ -15,7 +15,9 @@ let idProducts = recupPanier[p].idPdt;
 //Mettre les id du panier dans la variable "idProductsTableau"
 products.push(idProducts);
 console.log(products);
+console.log('metode set ---->',[...new Set(products)])
 }
+
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 //\\//\\//\\//\\//\\//\\ MSG PANIER VIDE \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
@@ -26,7 +28,7 @@ msgPanierVide.className = "text-center";
 
 //\\//\\//\\//\\//\\//\\ FONCTION addPanier --> définition des elements du panier \\//\\//\\//\\//\\//\\//\\//\\
 if (recupPanier) { 
-  for(let j=0; j < recupPanier.length ; j++){
+  for(let j = 0; j < recupPanier.length ; j++){
 
     let ligneTableau = document.createElement('tr');
 
@@ -103,7 +105,7 @@ window.location.href = "panier.html";
    let prixProduitDansLePanier = recupPanier[m].prix;
 //Mettre les prix du panier dans la variable "prixTotalCalcul"
    prixTotalCalcul.push(prixProduitDansLePanier);
-   console.log(prixTotalCalcul);
+   //console.log(prixTotalCalcul);
  }
 
 //additionner les prix qu'il y a dans le tableau de la variable "prixTotalCalcul" avec la methode .reduce
@@ -143,7 +145,7 @@ if(/^[A-Za-z]+$/.test(firstNameValide)){
   console.log("OK");
 }else{
   console.log("ko");
-  alert("Merci de rentrer un nom valide !");
+  alert("Merci de rentrer un prénom valide !");
 };
 
 //valider nom
@@ -194,11 +196,13 @@ const objetPost = {
   contact,
   products
 }
-console.log(objetPost);
-
+console.log('objet contact :', objetPost);
+console.log(validForm);
 //******************** fin Validation du formulaire ***********************/
 //condition pour que le formulaire soit valide avant l'envoi 
-if(validForm == 5){
+if(validForm !== 5){
+  validForm = []
+}else(validForm == 5);{
 
 //envoi de l'objet objetPost au serveur
 const promise01 = fetch("http://localhost:3000/api/cameras/order", {
@@ -208,6 +212,8 @@ const promise01 = fetch("http://localhost:3000/api/cameras/order", {
     "content-Type" : "application/json",
   },
 });
+console.log("promise01");
+
 console.log(promise01);
 
 //Pour voir le resultat du serveur dans la console
@@ -248,34 +254,30 @@ if(response.ok){
 
 
 
-//********************* Afficher champs du formulaire du local storage ***********/
-//Prendre la key dans le localStorage et la mettre dans une variable 
-// const datalocalStorage = localStorage.getItem("contact");
-
-// //convertir la chaine de caractere en objet javascript
-// const datalocalStorageObjet = JSON.parse(datalocalStorage);
-// console.log('datalocalStorage');
-
-// console.log(datalocalStorage);
-
-//mettre les values du localstorage dans le formulaire
-// document.querySelector('#firstName').setAttribute('value', datalocalStorageObjet.firstName);
-// document.querySelector('#lastName').setAttribute('value', datalocalStorageObjet.lastName);
-// document.querySelector('#address').setAttribute('value', datalocalStorageObjet.address);
-// document.querySelector('#city').setAttribute('value', datalocalStorageObjet.city);
-// document.querySelector('#email').setAttribute('value', datalocalStorageObjet.email);
-
-// //fonction " " --> le formulaire garde les donner meme si la page est rafraichis
-// function remplirInputDepuisLocalStorage(){
-//   document.querySelector("input").value = datalocalStorageObjet[input];
-// };
-
-// remplirInputDepuisLocalStorage("firstName");
-// remplirInputDepuisLocalStorage("laststName");
-// remplirInputDepuisLocalStorage("address");
-// remplirInputDepuisLocalStorage("city");
-// remplirInputDepuisLocalStorage("email");
-
+//********************* gestion panier ne pas rajouter de doublon ***********/
+// let products = [];
+// let produit_exist = false;
+// if (window.localStorage.getItem("products")) {
+// let products = JSON.parse(window.localStorage.getItem("products"));
+// console.log(JSON.stringify(products).indexOf(JSON.stringify(data)));
+// //check if a product exist in cart
+// console.log(products);
+// products.forEach((produit) => {
+// if (produit._id === data._id) {
+// produit_exist = true;
+// produit.count += 1;
+// }
+// });
+// if (produit_exist) {
+// window.localStorage.setItem("products", JSON.stringify(products));
+// } else {
+// products.push(data);
+// window.localStorage.setItem("products", JSON.stringify(products));
+// }
+// } else {
+// products.push(data);
+// window.localStorage.setItem("products", JSON.stringify(products));
+// }
 //********************************************************************************************************/
 
 

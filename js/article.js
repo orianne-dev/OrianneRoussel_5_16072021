@@ -1,12 +1,9 @@
 //******************** Déclaraton des variables *****************************//
-
 const section = document.querySelector('.section'); 
 const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
 const id = params.get('id'); //Obtiens l'id du produit 
 
-
 //************************ Appel API ***************************************//
-
 fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le const id
    .then(function(res) {
 	if (res.ok) {
@@ -23,7 +20,6 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
   });
 
 //\\//\\//\\//\\//\\//\\ FONCTION CREATPRODUCT: création des differents de la page article \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
   function createProduct(element){
 
         let article = document.createElement('article');
@@ -40,20 +36,6 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
         let description = document.createElement('p');
         description.className = 'article__description card-text text-center';
 
-        let buttonLenses = document.createElement('button');
-        buttonLenses.className = 'btn buttonLenses btn-secondary btn-sm dropdown-toggle'
-        buttonLenses.type = 'button';
-        buttonLenses.toggleAttribute = "dropdown";
-        buttonLenses.ariaExpanded = 'false';
-        //Probleme pour afficher la liste des lentilles
-        //S'affiche dans le DOM mais pas sur le navigateur???
-
-        let listLenses = document.createElement('ul');
-        listLenses.className = 'dropdown-menu';
-
-        let choixLenses = document.createElement('li');
-
-
         let prix = document.createElement('p');
         prix.className = 'article__prix text-center';
 
@@ -67,29 +49,51 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 		    button.setAttribute('data-name_product', element.name);
 		    button.setAttribute('data-price_product', element.price); 
 		    button.innerHTML = 'Ajouter au panier';
+
+
+        let buttonOption = document.createElement("button");	
+		    buttonOption.setAttribute('class','btn'); 
+		    buttonOption.innerHTML = 'Voir option'; 
     
         name.innerText = element.name;
         description.innerText = element.description;
         prix.innerText = element.price / 100 + "€";
-        buttonLenses.innerText = 'Choix des lentilles'; 
-        choixLenses.innerText = element.lenses;
-	 
+
         article.appendChild(img);
         article.appendChild(name);
         article.appendChild(description);
-        article.appendChild(buttonLenses);
-        buttonLenses.appendChild(listLenses);
-        listLenses.appendChild(choixLenses);
         article.appendChild(prix);
         article.appendChild(lien);
+        article.appendChild(buttonOption);
 		    article.append(button);
 		    section.appendChild(article);
-   
-//=============================== GESTION PANIER =================================/
-//fonction pop up ne marche qu'au 2eme click ?????
+        
+//brouillon fonction option produit
 
-//envoyer au panier : Déclenché au click sur button -->
-  button.addEventListener("click",(event) => {
+      //   function selectionOption() {
+      //     let select = document.createElement("Select");
+      //     select.setAttribute("id", "mySelect");
+      //     document.buttonOption.appendChild(select);
+            
+      //     let opttion = document.createElement("option");
+      //     opttion.setAttribute("value", element.lenses);
+      //     let nod = document.createTextNode(element.lenses);
+      //     opttion.appendChild(nod);
+      //     document.getElementById("MySelect").appendChild(opttion);
+      // }
+
+            //Fonction pour le tableau lenses
+// const lenseList = () => {
+//   for (let i = 0; i < camera.lenses.length; i++) {
+//       const option = document.createElement("option") //Créé notre liste option
+//       option.setAttribute("value", camera.lenses[i]) //Incrémente nos lenses à notre liste option               
+//       option.innerHTML = camera.lenses[i]
+//       option.appendChild(buttonOption)
+//   }
+// }
+
+//=============================== GESTION PANIER =================================/
+button.addEventListener("click",(event) => {
     
 // produitSelection --> recuperation des valeurs choisis
 let produitSelection = {                               
@@ -110,10 +114,11 @@ const popupConfirm = () =>{
 }
 /////////////////Fin Fonction pop up//////////////
 
-//stocker la recuperation des valeurs dans le LS
-// réafecter fonction  pdtInLocalStorage --> recuperer dans le ls panier et le parser
+//stocker la recuperation des valeurs dans le LS réafecter fonction  pdtInLocalStorage --> recuperer dans le ls panier et le parser
 let pdtInLocalStorage = JSON.parse(localStorage.getItem('panier'));
 
+//appel fonction popup confirmation user 
+popupConfirm();
 
 //Si pdtInlocalStorage est dans le local storage
 //Ajoute produitSelection à la fin du tableau pdtInLocalStorage
@@ -126,8 +131,7 @@ if(pdtInLocalStorage){
   
   console.log('objet cliqué *************', localStorage.getItem('panier'));
 
-//appel fonction popup confirmation user 
-    popupConfirm(); 
+ 
 }
 
 //sinon (pas de pdt d'enregistré dans le local storage)
@@ -142,11 +146,6 @@ else{
 //***************FIN gestion du panier ****************/
   }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\ FIN Fonction createProduct //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-
 
   
 
