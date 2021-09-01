@@ -131,6 +131,15 @@ else{
   console.log(produitSelection);
   }
   
+  let trouve = false;
+let idToDelete;
+for(let i = 0; i < pdtInLocalStorage.length; i++){
+  if(pdtInLocalStorage[i]._id == element._id){
+    trouve = true;
+    idToDelete = i;
+  }
+}
+pdtInLocalStorage.splice(idToDelete, 1);
 //gerer les doublons
 //avoir l'index. Si ca retourne -1, c'est que le pdt n'a pas été trouvé
 //mettre à jour ton produit via l'index
