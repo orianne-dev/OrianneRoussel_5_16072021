@@ -132,6 +132,9 @@ else{
   }
   
 //gerer les doublons
+//avoir l'index. Si ca retourne -1, c'est que le pdt n'a pas été trouvé
+//mettre à jour ton produit via l'index
+
 // const index = pdtInLocalStorage.findIndex(pdt => pdt._id === element._id);
 
 // (index != -1){
@@ -144,8 +147,7 @@ else{
 // console.log(index);
 
 
-//avoir l'index. Si ca retourne -1, c'est que le pdt n'a pas été trouvé
-//mettre à jour ton produit via l'index
+
 //let trouve = false;
 // for (let i in pdtInLocalStorage){
 //   if(pdtInLocalStorage[i]._id==element._id){
