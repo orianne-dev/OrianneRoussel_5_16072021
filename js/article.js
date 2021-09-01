@@ -94,14 +94,12 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 
 //=============================== GESTION PANIER =================================/
 button.addEventListener("click",(event) => {
-    
-// produitSelection --> recuperation des valeurs choisis
+    // produitSelection --> recuperation des valeurs choisis
 let produitSelection = {                               
   nomPdt: button.getAttribute('data-name_product'),
   idPdt: button.getAttribute('data-id_product'),
   prix: button.getAttribute('data-price_product') / 100
 };
-
 //////////////FONCTION fenetre pop up////////////
 const popupConfirm = () =>{
 
@@ -109,7 +107,7 @@ const popupConfirm = () =>{
     Consultez le panier OK ou revenir à l'acceuil ANNULER`)){ 
       window.location.href = "panier.html";
   }else{
-      window.location.href = "index.html";
+     window.location.href = "index.html";
         } 
 }
 /////////////////Fin Fonction pop up//////////////
@@ -117,23 +115,13 @@ const popupConfirm = () =>{
 //stocker la recuperation des valeurs dans le LS réafecter fonction  pdtInLocalStorage --> recuperer dans le ls panier et le parser
 let pdtInLocalStorage = JSON.parse(localStorage.getItem('panier'));
 
-//appel fonction popup confirmation user 
 popupConfirm();
-
-//Si pdtInlocalStorage est dans le local storage
-//Ajoute produitSelection à la fin du tableau pdtInLocalStorage
-//envoi du LS panier en strignifiant pdtInlocalSorage
 console.log('panier initial de la page produit : ', pdtInLocalStorage)
-
 if(pdtInLocalStorage){
   pdtInLocalStorage.push(produitSelection); 
   localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
-  
   console.log('objet cliqué *************', localStorage.getItem('panier'));
-
- 
 }
-
 //sinon (pas de pdt d'enregistré dans le local storage)
 else{
   pdtInLocalStorage = [];
@@ -142,7 +130,38 @@ else{
 
   console.log(produitSelection);
   }
+  
+//gerer les doublons
+// const index = pdtInLocalStorage.findIndex(pdt => pdt._id === element._id);
+
+// (index != -1){
+//   pdtInLocalStorage.push({
+//         nomPdt: button.getAttribute('data-name_product'),
+//       idPdt: button.getAttribute('data-id_product'),
+//       prix: button.getAttribute('data-price_product') / 100
+//       });
+// }
+// console.log(index);
+
+
+//avoir l'index. Si ca retourne -1, c'est que le pdt n'a pas été trouvé
+//mettre à jour ton produit via l'index
+//let trouve = false;
+// for (let i in pdtInLocalStorage){
+//   if(pdtInLocalStorage[i]._id==element._id){
+//     trouve = true;
+//   }
+// }
+// if (trouve===false){
+//   pdtInLocalStorage.push({
+//     nomPdt: button.getAttribute('data-name_product'),
+//   idPdt: button.getAttribute('data-id_product'),
+//   prix: button.getAttribute('data-price_product') / 100
+//   });
+// }
+
 })
+
 //***************FIN gestion du panier ****************/
   }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\ FIN Fonction createProduct //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\

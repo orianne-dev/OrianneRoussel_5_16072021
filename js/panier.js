@@ -6,20 +6,6 @@ let validForm = 0;
 //Recuperation des données panier
 console.log('voici mes données panier',JSON.parse(localStorage.getItem('panier')));
 
-//\\//\\//\\//\\//\\//\\ TABLEAU ID PRODUIT \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-//boucle for in ou for of creer un tableau dynamique d'id produit
-let products = [];
-//Aller chercher les id dans products
-for (let p = 0; p < recupPanier.length; p++){
-let idProducts = recupPanier[p].idPdt;
-//Mettre les id du panier dans la variable "idProductsTableau"
-products.push(idProducts);
-console.log(products);
-console.log('metode set ---->',[...new Set(products)])
-}
-
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
 //\\//\\//\\//\\//\\//\\ MSG PANIER VIDE \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 const msgPanierVide = document.createElement('h2');
 msgPanierVide.innerHTML = "Le panier est vide !";
@@ -63,20 +49,38 @@ const btnPanier = document.querySelector('.btn-panier');
 btnPanier.appendChild(buttonDelete);
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
+//\\//\\//\\//\\//\\//\\ TABLEAU ID PRODUIT \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+//boucle for in ou for of creer un tableau dynamique d'id produit
+let products = [];
+//Aller chercher les id dans products
+for (let p = 0; p < recupPanier.length; p++){
+let idProducts = recupPanier[p].idPdt;
+//Mettre les id du panier dans la variable "idProductsTableau"
+products.push(idProducts);
+console.log(products);
+}
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
 
 //\\//\\//\\//\\//\\//\\ VIDER LE PANIER \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 //vider tout le panier
 let btn = document.querySelector(".btnViderPanier");
 
-btn.addEventListener("click", () => {
+function viderPanier(){
   localStorage.removeItem('panier');
   panierBody.innerHTML ='<h2 class = "text-center">Le panier est vide </h2>'
-})
+}
+
+btn.addEventListener("click", () => {
+  viderPanier();
+  });
+
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 //\\//\\//\\//\\//\\//\\//\\supprimer un article//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 //selection des references de tous les boutons btnSupprimeArticle
 let btnsSupprimeArticle = document.querySelectorAll('.btn-sup');
+
 for (let k = 0; k < btnsSupprimeArticle.length; k++){
   btnsSupprimeArticle[k].addEventListener('click' , (event) =>{
    event.preventDefault();
@@ -92,9 +96,16 @@ localStorage.setItem("panier", JSON.stringify(recupPanier));
 
 //alert --> notifier que le produit a été supprimer et recharger la page
 alert("Ce produit a été supprimé du panier");
+//Pour afficher "le panier est vide"
+if (recupPanier.length == 0){
+  viderPanier();
+}
 window.location.href = "panier.html";
+
 })
 }
+
+
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 //\\//\\//\\//\\//\\//\\ TOTAL PANIER \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
