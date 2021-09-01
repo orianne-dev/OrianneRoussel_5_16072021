@@ -115,70 +115,34 @@ const popupConfirm = () =>{
 //stocker la recuperation des valeurs dans le LS réafecter fonction  pdtInLocalStorage --> recuperer dans le ls panier et le parser
 let pdtInLocalStorage = JSON.parse(localStorage.getItem('panier'));
 
-popupConfirm();
 console.log('panier initial de la page produit : ', pdtInLocalStorage)
-if(pdtInLocalStorage){
-  pdtInLocalStorage.push(produitSelection); 
-  localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
-  console.log('objet cliqué *************', localStorage.getItem('panier'));
+
+ let recupPanier = JSON.parse(localStorage.getItem('panier'));
+
+for (let i in pdtInLocalStorage) {
+ 
+	// id ==> id en param url
+		if(pdtInLocalStorage[i].idPdt == id)
+		{  
+			// produit existant déjà dans le panier => je le vire du panier
+			console.log('trouvé');
+			pdtInLocalStorage.splice(i,1);
+			console.log('supprimé');
+		}
+	} 
+
+if(!pdtInLocalStorage){
+	pdtInLocalStorage = [];
 }
-//sinon (pas de pdt d'enregistré dans le local storage)
-else{
-  pdtInLocalStorage = [];
-  pdtInLocalStorage.push(produitSelection); 
-  localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
 
-  console.log(produitSelection);
-  }
-  
-  let trouve = false;
-let idToDelete;
-for(let i = 0; i < pdtInLocalStorage.length; i++){
-  if(pdtInLocalStorage[i]._id == element._id){
-    trouve = true;
-    idToDelete = i;
-  }
-}
-pdtInLocalStorage.splice(idToDelete, 1);
-//gerer les doublons
-//avoir l'index. Si ca retourne -1, c'est que le pdt n'a pas été trouvé
-//mettre à jour ton produit via l'index
-
-// const index = pdtInLocalStorage.findIndex(pdt => pdt._id === element._id);
-
-// (index != -1){
-//   pdtInLocalStorage.push({
-//         nomPdt: button.getAttribute('data-name_product'),
-//       idPdt: button.getAttribute('data-id_product'),
-//       prix: button.getAttribute('data-price_product') / 100
-//       });
-// }
-// console.log(index);
-
-
-
-//let trouve = false;
-// for (let i in pdtInLocalStorage){
-//   if(pdtInLocalStorage[i]._id==element._id){
-//     trouve = true;
-//   }
-// }
-// if (trouve===false){
-//   pdtInLocalStorage.push({
-//     nomPdt: button.getAttribute('data-name_product'),
-//   idPdt: button.getAttribute('data-id_product'),
-//   prix: button.getAttribute('data-price_product') / 100
-//   });
-// }
+// et je le remplace car je ne gère pas les quantités
+pdtInLocalStorage.push(produitSelection); 
+localStorage.setItem('panier',JSON.stringify(pdtInLocalStorage));
+// ensuite je lance la popupConfirm
+popupConfirm();
 
 })
-
 //***************FIN gestion du panier ****************/
   }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\ FIN Fonction createProduct //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-  
-
-  
- 
  
