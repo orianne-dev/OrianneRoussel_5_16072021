@@ -36,12 +36,12 @@ body {
     width: 18rem;
 }
 
-
-.footer-article-panier {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    padding-top: 50px;
+.footer-article {
+    
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+    
 }
 
 .btn-supp{
@@ -118,14 +118,11 @@ body {
 }
 
 .recap-commande {
-    width: 80vw;
     border: 1px solid black;
+    margin-top: 10rem;
 }
 
 .numero-commande {
     font-weight: bold;
 }
 
-/* #tableau-panier {
-    display: none;
-} */

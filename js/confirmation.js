@@ -2,14 +2,18 @@
 const responseId = localStorage.getItem("orderId");
 console.log(`responseId : ${responseId}`);
 
+//recuperer le prix total de la commande 
+let prixTotalRecup = localStorage.getItem("prixTotal");
+console.log(prixTotalRecup);
 //La structure HTML de la page confirmation
 const positionElement5 = document.querySelector('.box-recap-commande');
 
 const confirmationPage = `
-<div class="recap-commande justify-content-center">
+<div class="justify-content-center">
             <h2 class="text-center">Merci pour votre commande</h2>
             <p class="text-center">Votre commande numéro: <span class="numero-commande">${responseId}</span> a bien été prise en
                 compte.</p>
+            <p class="text-center">Prix total: <span class="numero-commande">${prixTotalRecup}</span> €.</p>
             <p class="text-center">A bientôt sur Orinoco !</p>
         </div>
 `;
@@ -25,3 +29,4 @@ function enleverLocalStorage(key){
 enleverLocalStorage("contact");
 enleverLocalStorage("panier");
 enleverLocalStorage("orderId");
+enleverLocalStorage("prixTotal");

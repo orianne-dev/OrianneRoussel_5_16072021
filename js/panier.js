@@ -129,6 +129,10 @@ const  afficherPrixTotal = `<p class="afficherPrixTotal">Le prix total est de : 
 //injection HTML 
 const d1 = document.querySelector('#one');
 d1.insertAdjacentHTML('afterend', afficherPrixTotal);
+
+//Envoi du total dans le local storage pour l'afficher sur la page confirm
+localStorage.setItem("prixTotal",JSON.stringify(prixTotal));
+
 //\\//\\//\\//\\//\\//\\ FIN TOTAL PANIER \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 //\\//\\//\\//\\//\\//\\//\\//\\//\\ FORMULAIRE //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
@@ -218,7 +222,7 @@ if(validForm !== 5){
 //envoi de l'objet objetPost au serveur
 const promise01 = fetch("http://localhost:3000/api/cameras/order", {
   method: "POST",
-  body: JSON.stringify(objetPost),
+  body: JSON.stringify(objetPost, prixTotal),
   headers: {
     "content-Type" : "application/json",
   },
@@ -260,35 +264,4 @@ if(response.ok){
 
 }
 })
-
 //************************ Fin addEventListener ***********************/
-
-
-
-//********************* gestion panier ne pas rajouter de doublon ***********/
-// let products = [];
-// let produit_exist = false;
-// if (window.localStorage.getItem("products")) {
-// let products = JSON.parse(window.localStorage.getItem("products"));
-// console.log(JSON.stringify(products).indexOf(JSON.stringify(data)));
-// //check if a product exist in cart
-// console.log(products);
-// products.forEach((produit) => {
-// if (produit._id === data._id) {
-// produit_exist = true;
-// produit.count += 1;
-// }
-// });
-// if (produit_exist) {
-// window.localStorage.setItem("products", JSON.stringify(products));
-// } else {
-// products.push(data);
-// window.localStorage.setItem("products", JSON.stringify(products));
-// }
-// } else {
-// products.push(data);
-// window.localStorage.setItem("products", JSON.stringify(products));
-// }
-//********************************************************************************************************/
-
-

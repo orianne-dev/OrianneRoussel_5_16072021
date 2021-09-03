@@ -50,10 +50,8 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 		    button.setAttribute('data-price_product', element.price); 
 		    button.innerHTML = 'Ajouter au panier';
 
-
-        let buttonOption = document.createElement("button");	
-		    buttonOption.setAttribute('class','btn'); 
-		    buttonOption.innerHTML = 'Voir option'; 
+        let select = document.createElement("select");	 
+        select.setAttribute("id", "list");
     
         name.innerText = element.name;
         description.innerText = element.description;
@@ -64,25 +62,65 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
         article.appendChild(description);
         article.appendChild(prix);
         article.appendChild(lien);
-        article.appendChild(buttonOption);
+        article.appendChild(select);
 		    article.append(button);
 		    section.appendChild(article);
         
 //brouillon fonction option produit
 
-      //   function selectionOption() {
-      //     let select = document.createElement("Select");
-      //     select.setAttribute("id", "mySelect");
-      //     document.buttonOption.appendChild(select);
-            
-      //     let opttion = document.createElement("option");
-      //     opttion.setAttribute("value", element.lenses);
-      //     let nod = document.createTextNode(element.lenses);
-      //     opttion.appendChild(nod);
-      //     document.getElementById("MySelect").appendChild(opttion);
-      // }
+// function getSelectValue()
+//         {
+//             let selectedValue = document.getElementById("list").value;
+//             console.log(selectedValue);
+//         }
+//         getSelectValue();
 
-            //Fonction pour le tableau lenses
+             //Fonction pour le tableau lenses
+// const lenseList = () => {
+//   for (let j = 0; j < camera.lenses.length; j++) {
+//       let option = document.createElement("option") //Créé notre liste option
+//       option.setAttribute("value", camera.lenses[j]) //Incrémente nos lenses à notre liste option               
+//       option.innerHTML = camera.lenses[j]
+//       option.appendChild(select)
+//   }
+// }
+ //Fonction pour le tableau lenses
+ //let tableauOption = [];
+
+ let option = document.createElement("option");
+ option.setAttribute("value", element.lenses);
+ let nod = document.createTextNode(element.lenses);
+ select.appendChild(option);
+ option.appendChild(nod);
+ document.getElementById("list").appendChild(option);
+
+ let tableauOption = () => {
+  for (let j = 0; j < camera.lenses.length; j++) {
+      //let option = document.createElement("option") //Créé notre liste option
+      option.setAttribute("value", camera.lenses[j]) //Incrémente nos lenses à notre liste option               
+console.log(camera.lenses[j])
+      option.innerHTML = camera.lenses[j]
+      //option.appendChild(select)
+console.log(j)
+
+  }
+}
+
+console.log(element.lenses);
+
+
+
+
+        //function selectionOption() {
+            
+//           let opttion = document.createElement("option");
+//           opttion.setAttribute("value", element.lenses);
+//           let nod = document.createTextNode(element.lenses);
+//           opttion.appendChild(nod);
+//           document.getElementById("MySelect").appendChild(opttion);
+//       //}
+
+//             //Fonction pour le tableau lenses
 // const lenseList = () => {
 //   for (let i = 0; i < camera.lenses.length; i++) {
 //       const option = document.createElement("option") //Créé notre liste option
