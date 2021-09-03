@@ -65,70 +65,17 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
         article.appendChild(select);
 		    article.append(button);
 		    section.appendChild(article);
-        
-//brouillon fonction option produit
 
-// function getSelectValue()
-//         {
-//             let selectedValue = document.getElementById("list").value;
-//             console.log(selectedValue);
-//         }
-//         getSelectValue();
+let features = element.lenses;
 
-             //Fonction pour le tableau lenses
-// const lenseList = () => {
-//   for (let j = 0; j < camera.lenses.length; j++) {
-//       let option = document.createElement("option") //Créé notre liste option
-//       option.setAttribute("value", camera.lenses[j]) //Incrémente nos lenses à notre liste option               
-//       option.innerHTML = camera.lenses[j]
-//       option.appendChild(select)
-//   }
-// }
- //Fonction pour le tableau lenses
- //let tableauOption = [];
+features.forEach(feature => {
 
- let option = document.createElement("option");
- option.setAttribute("value", element.lenses);
- let nod = document.createTextNode(element.lenses);
- select.appendChild(option);
- option.appendChild(nod);
- document.getElementById("list").appendChild(option);
+let option = document.createElement("option");
+option.text = feature;
+option.value = feature;
+select.append(option);
 
- let tableauOption = () => {
-  for (let j = 0; j < camera.lenses.length; j++) {
-      //let option = document.createElement("option") //Créé notre liste option
-      option.setAttribute("value", camera.lenses[j]) //Incrémente nos lenses à notre liste option               
-console.log(camera.lenses[j])
-      option.innerHTML = camera.lenses[j]
-      //option.appendChild(select)
-console.log(j)
-
-  }
-}
-
-console.log(element.lenses);
-
-
-
-
-        //function selectionOption() {
-            
-//           let opttion = document.createElement("option");
-//           opttion.setAttribute("value", element.lenses);
-//           let nod = document.createTextNode(element.lenses);
-//           opttion.appendChild(nod);
-//           document.getElementById("MySelect").appendChild(opttion);
-//       //}
-
-//             //Fonction pour le tableau lenses
-// const lenseList = () => {
-//   for (let i = 0; i < camera.lenses.length; i++) {
-//       const option = document.createElement("option") //Créé notre liste option
-//       option.setAttribute("value", camera.lenses[i]) //Incrémente nos lenses à notre liste option               
-//       option.innerHTML = camera.lenses[i]
-//       option.appendChild(buttonOption)
-//   }
-// }
+});	 
 
 //=============================== GESTION PANIER =================================/
 button.addEventListener("click",(event) => {
