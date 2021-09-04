@@ -1,13 +1,11 @@
 //Recuperer l'id de la commande (provenant du serveur) dans le local storage
 const responseId = localStorage.getItem("orderId");
-console.log(`responseId : ${responseId}`);
-
 //recuperer le prix total de la commande 
 let prixTotalRecup = localStorage.getItem("prixTotal");
-console.log(prixTotalRecup);
 //La structure HTML de la page confirmation
 const positionElement5 = document.querySelector('.box-recap-commande');
 
+//*********Afficher numero de commande + total panier ***************/
 const confirmationPage = `
 <div class="justify-content-center">
             <h2 class="text-center">Merci pour votre commande</h2>
@@ -21,7 +19,7 @@ const confirmationPage = `
 //injection HTML
 positionElement5.insertAdjacentHTML("afterbegin", confirmationPage);
 
-//Effacer tout le local storage
+//***********************Effacer tout le local storage **********************/
 function enleverLocalStorage(key){
     localStorage.removeItem(key);
 }

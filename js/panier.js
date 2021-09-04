@@ -1,10 +1,9 @@
 //******************** Déclaraton des variables *****************************//
 const panierBody = document.querySelector('.panierBody'); 
 const tbody = document.querySelector('tbody');
+//Recuperation des données panier
 let recupPanier = JSON.parse(localStorage.getItem('panier'));
 let validForm = 0;
-//Recuperation des données panier
-console.log('voici mes données panier',JSON.parse(localStorage.getItem('panier')));
 
 //\\//\\//\\//\\//\\//\\ MSG PANIER VIDE \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 const msgPanierVide = document.createElement('h2');
@@ -49,15 +48,14 @@ const btnPanier = document.querySelector('.btn-panier');
 btnPanier.appendChild(buttonDelete);
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
-//\\//\\//\\//\\//\\//\\ TABLEAU ID PRODUIT \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-//boucle for in ou for of creer un tableau dynamique d'id produit
+//\\//\\//\\//\\//\\//\\ Products --> TABLEAU ID PRODUIT qui sera envoyé à l'api\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+//boucle for creer un tableau dynamique d'id produit
 let products = [];
 //Aller chercher les id dans products
 for (let p = 0; p < recupPanier.length; p++){
 let idProducts = recupPanier[p].idPdt;
 //Mettre les id du panier dans la variable "idProductsTableau"
 products.push(idProducts);
-console.log(products);
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
@@ -116,7 +114,6 @@ window.location.href = "panier.html";
    let prixProduitDansLePanier = recupPanier[m].prix;
 //Mettre les prix du panier dans la variable "prixTotalCalcul"
    prixTotalCalcul.push(prixProduitDansLePanier);
-   //console.log(prixTotalCalcul);
  }
 
 //additionner les prix qu'il y a dans le tableau de la variable "prixTotalCalcul" avec la methode .reduce
@@ -157,9 +154,7 @@ const  contact = {
 const firstNameValide = contact.firstName;
 if(/^[A-Za-z]+$/.test(firstNameValide)){
   validForm++;
-  console.log("OK");
 }else{
-  console.log("ko");
   alert("Merci de rentrer un prénom valide !");
 };
 
@@ -167,9 +162,7 @@ if(/^[A-Za-z]+$/.test(firstNameValide)){
 const lastNameValide = contact.lastName;
 if(/^[A-Za-z]+$/.test(lastNameValide)){
   validForm++;
-  console.log("OK");
 }else{
-  console.log("KO");
   alert("Merci de rentrer un nom valide !");
 };
 
@@ -177,9 +170,7 @@ if(/^[A-Za-z]+$/.test(lastNameValide)){
 const adressValide = contact.adress;
 if(/^[A-Za-z]+$/.test(adressValide)){
   validForm++;
-  console.log("OK");
 }else{
-  console.log("ko");
   alert("Merci de rentrer une adresse valide !");
 };
 
@@ -187,9 +178,7 @@ if(/^[A-Za-z]+$/.test(adressValide)){
 const cityValide = contact.city;
 if(/[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/.test(cityValide)){
   validForm++;
-  console.log("OK");
 }else{
-  console.log("ko");
   alert("Merci de rentrer une ville valide !");
 };
 
@@ -197,9 +186,7 @@ if(/[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/.test(cityValide)){
 const emailValide = contact.email;
 if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailValide)){
   validForm++;
-  console.log("OK");
 }else{
-  console.log("ko");
   alert("Merci de rentrer un email valide !");
 };
 
@@ -211,8 +198,6 @@ const objetPost = {
   contact,
   products
 }
-console.log('objet contact :', objetPost);
-console.log(validForm);
 //******************** fin Validation du formulaire ***********************/
 //condition pour que le formulaire soit valide avant l'envoi 
 if(validForm !== 5){
@@ -227,24 +212,15 @@ const promise01 = fetch("http://localhost:3000/api/cameras/order", {
     "content-Type" : "application/json",
   },
 });
-console.log("promise01");
-
-console.log(promise01);
 
 //Pour voir le resultat du serveur dans la console
 promise01.then(async(response)=>{
   try{
-    console.log(response);
 
     const contenu = await response.json();
-    console.log(contenu);
 
 if(response.ok){
-  console.log(`Resultat de response.ok : ${response.ok}`);
   //recuperation de l'id de la reponse serveur
-  console.log('id de response');
-  console.log(contenu.orderId);
-
   //Mettre l'id dans le local storage
   localStorage.setItem("orderId", contenu.orderId);
 
@@ -252,16 +228,11 @@ if(response.ok){
   window.location = "confirmation.html";
 }else{
   console.log(`Reponse du serveur : ${response.status}`);
-
 }
-
-
-  }catch(erreur){
+}catch(erreur){
     console.log(erreur);
   }
 })
-
-
 }
 })
 //************************ Fin addEventListener ***********************/

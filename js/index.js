@@ -18,7 +18,6 @@ fetch('http://localhost:3000/api/cameras')     //fetch appel le serveur
         let img = document.createElement('img');
         img.className = 'article__image img-fluid';
         img.setAttribute('src', cameras[i].imageUrl);
-        // img.setAttribute('width', '300');
 
         let name = document.createElement('h2');
         name.className = 'article__nom text-center';

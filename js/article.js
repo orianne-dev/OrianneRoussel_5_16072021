@@ -1,10 +1,13 @@
 //******************** Déclaraton des variables *****************************//
 const section = document.querySelector('.section'); 
-const params = (new URL(document.location)).searchParams; //retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
-const id = params.get('id'); //Obtiens l'id du produit 
+//retourne l'objet permettant d'accéder aux arguments de la requête GET contenus dans l'URL.
+const params = (new URL(document.location)).searchParams; 
+//Obtiens l'id du produit
+const id = params.get('id');  
 
 //************************ Appel API ***************************************//
-fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le const id
+//appel API + Id definit par le const id
+fetch('http://localhost:3000/api/cameras/' + id) 
    .then(function(res) {
 	if (res.ok) {
 	  return res.json();
@@ -66,16 +69,16 @@ fetch('http://localhost:3000/api/cameras/' + id) //appel API + Id definit par le
 		    article.append(button);
 		    section.appendChild(article);
 
-let features = element.lenses;
+        let features = element.lenses;
 
-features.forEach(feature => {
+        features.forEach(feature => {
 
-let option = document.createElement("option");
-option.text = feature;
-option.value = feature;
-select.append(option);
+        let option = document.createElement("option");
+        option.text = feature;
+        option.value = feature;
+        select.append(option);
 
-});	 
+        });	 
 
 //=============================== GESTION PANIER =================================/
 button.addEventListener("click",(event) => {
@@ -100,10 +103,7 @@ const popupConfirm = () =>{
 //stocker la recuperation des valeurs dans le LS réafecter fonction  pdtInLocalStorage --> recuperer dans le ls panier et le parser
 let pdtInLocalStorage = JSON.parse(localStorage.getItem('panier'));
 
-console.log('panier initial de la page produit : ', pdtInLocalStorage)
-
- let recupPanier = JSON.parse(localStorage.getItem('panier'));
-
+//gestion des doublons
 for (let i in pdtInLocalStorage) {
  
 	// id ==> id en param url
