@@ -66,12 +66,14 @@ let btn = document.querySelector(".btnViderPanier");
 
 function viderPanier(){
   localStorage.removeItem('panier');
-  panierBody.innerHTML ='<h2 class = "text-center">Le panier est vide </h2>'
+  panierBody.innerHTML ='<h2 class = "text-center">Le panier est vide </h2>';
+  d1.remove();
 }
 
 btn.addEventListener("click", () => {
   viderPanier();
   });
+
 
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
