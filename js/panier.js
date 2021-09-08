@@ -68,6 +68,7 @@ function viderPanier(){
   localStorage.removeItem('panier');
   panierBody.innerHTML ='<h2 class = "text-center">Le panier est vide </h2>';
   d1.remove();
+window.location.href = "panier.html";
 }
 
 btn.addEventListener("click", () => {
@@ -204,6 +205,7 @@ const objetPost = {
 //condition pour que le formulaire soit valide avant l'envoi 
 if(validForm !== 5){
   validForm = []
+  return 0 ;
 }else(validForm == 5);{
 
 //envoi de l'objet objetPost au serveur
