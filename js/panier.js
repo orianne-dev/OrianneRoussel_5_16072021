@@ -52,10 +52,13 @@ btnPanier.appendChild(buttonDelete);
 //boucle for creer un tableau dynamique d'id produit
 let products = [];
 //Aller chercher les id dans products
+if(recupPanier !== null) {
+
 for (let p = 0; p < recupPanier.length; p++){
 let idProducts = recupPanier[p].idPdt;
 //Mettre les id du panier dans la variable "idProductsTableau"
 products.push(idProducts);
+}
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
@@ -106,18 +109,19 @@ window.location.href = "panier.html";
 })
 }
 
-
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 //\\//\\//\\//\\//\\//\\ TOTAL PANIER \\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 //Declaration de la variable prixTotalCalcul pour y mettre les prix present dans le panier
  let prixTotalCalcul = [];
 //Aller chercher les prix dans le panier
+//if(recupPanier !== null && recupPanier >= 1) {
  for (let m = 0; m < recupPanier.length; m++){
    let prixProduitDansLePanier = recupPanier[m].prix;
 //Mettre les prix du panier dans la variable "prixTotalCalcul"
-   prixTotalCalcul.push(prixProduitDansLePanier);
+   prixTotalCalcul.push(prixProduitDansLePanier); 
  }
+//}
 
 //additionner les prix qu'il y a dans le tableau de la variable "prixTotalCalcul" avec la methode .reduce
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
